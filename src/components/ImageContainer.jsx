@@ -4,12 +4,10 @@ import React, { Component } from 'react';
 
 class ImageContainer extends Component {
     onImgLoad () {
-        
         var img = new Image();
         img.src = this.props.fileUrl;
-        console.log(this.props.fileUrl);
         
-        img.onload = () => {pixelate(img, 10)}
+        img.onload = () => {pixelate(img, this.props.scale)}
 
         var canvas = document.getElementById('canvas');
         var ctx = canvas.getContext('2d');   
@@ -26,12 +24,18 @@ class ImageContainer extends Component {
         }
         canvas.addEventListener('mousemove', pick);
     }
+
+    componentDidUpdate(prevProps) {
+        if(this.props.fileUrl !== prevProps.fileUrl ||
+            this.props.scale !== prevProps.scale)
+        {
+            this.onImgLoad()
+        }
+    } 
     
     render() {
         return (
             <div>
-                <img id="uploaded_img" src={this.props.fileUrl} alt='not_shown'
-                    onLoad={()=>{this.onImgLoad()}} style={{display: 'none'}} />
                 <canvas id="canvas" width="300" height="227"></canvas>
                 <div id="color"></div>
 
