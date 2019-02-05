@@ -1,1 +1,4 @@
-# cross_stitch_generator
+## Cross Stitch Generator
+
+A simple web app to turn pictures into cross-stitch patterns.
+
