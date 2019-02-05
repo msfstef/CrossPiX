@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
-import ImageContainer from './ImageContainer';
-import ScaleSlider from './ScaleSlider';
+import PreEditor from './PreEditor';
+import Pixelator from './Pixelator';
+
 
 class AppContainer extends Component {
-    defaultScale = 5;
 
     state = {
         file_url : '',
-        scale: 5
+        pixel_url : ''
     }
 
     handleFile = (files) => {
         var file = document.getElementById('img_upload').files[0];
-        this.setState({ file_url : window.URL.createObjectURL(file) });
-        this.setState({ scale : this.defaultScale });
+        if (file) {
+            this.setState({ file_url : window.URL.createObjectURL(file) });
+        }
     }
 
-    handleSlider = () => {
-        this.setState({ scale : document.getElementById("scaleSlider").value})
+    outputHandler = (url_name, url) => {
+        this.setState({ url_name : url })
+        console.log(this.state);
     }
 
     render() {
@@ -25,10 +27,10 @@ class AppContainer extends Component {
             <div>
                 <input type="file" id="img_upload" accept="image/*" 
                     onChange= {()=>{this.handleFile()}} />
-                <ImageContainer fileUrl = {this.state.file_url} 
-                                scale = {this.state.scale}/>
-                <ScaleSlider handler = {this.handleSlider}
-                            defaultScale = {this.defaultScale} />
+                <PreEditor fileUrl = {this.state.file_url} />
+                <Pixelator fileUrl = {this.state.file_url} 
+                        outputHandler = {this.outputHandler} />
+                
             </div>
         );
     }
