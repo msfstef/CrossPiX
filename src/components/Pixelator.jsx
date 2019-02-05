@@ -19,8 +19,32 @@ class ImageContainer extends Component {
 
         var canvas = document.getElementById('PixelatorCanvas');
         img.onload = () => {
-            pixelate(canvas, img, this.state.scale)
-            this.props.outputHandler("pixelUrl", canvas.toDataURL());
+            let temp_w = img.width;
+            let temp_h = img.height;
+            canvas.width = img.width;
+            canvas.height = img.height;
+            
+            var ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            var w = canvas.width / this.state.scale;
+            var h = canvas.height / this.state.scale;
+            
+            canvas.width = w;
+            canvas.height = h;
+            toggleAliasing(ctx, true);
+            ctx.drawImage(img, 0, 0, w, h);
+            this.props.outputHandler({"pixelUrl" : canvas.toDataURL()});
+            
+            canvas.width = temp_w;
+            canvas.height = temp_h;
+            toggleAliasing(ctx, true);
+            ctx.drawImage(img, 0, 0, w, h);
+
+            
+            img.style.display = 'none';
+            toggleAliasing(ctx, false);
+            ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
         }        
     }
 
@@ -28,11 +52,10 @@ class ImageContainer extends Component {
         if(this.props.fileUrl !== prevProps.fileUrl)
         {
             document.getElementById("scaleSlider").value = this.state.defaultScale;
+            this.setState({ scale: this.state.defaultScale});
             this.onImgLoad();
         }
     }
-
-    
     
     render() {
         return (
@@ -48,26 +71,8 @@ class ImageContainer extends Component {
 
 export default ImageContainer
 
-
-var pixelate = (canvas, img, scale) => {
-    canvas.height = img.height / 2 ;
-    canvas.width = img.width / 2;
-
-    var ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    var w = canvas.width / scale;
-    var h = canvas.height / scale;
-    toggleAliasing(ctx, false);
-    ctx.drawImage(img, 0, 0, w, h);
-    
-    toggleAliasing(ctx, true);
-    img.style.display = 'none';
-    ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
-};
-
 var toggleAliasing = (ctx, toggle) => {
-    if (toggle) {
+    if (!toggle) {
         ctx.imageSmoothingEnabled = false;
         ctx.mozImageSmoothingEnabled = false;
         ctx.webkitImageSmoothingEnabled = false;

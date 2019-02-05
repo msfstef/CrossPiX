@@ -21,6 +21,9 @@ class PreEditor extends Component {
             var h = canvas.height;
             ctx.drawImage(img, 0, 0, w, h);
             img.style.display = 'none';
+            this.props.outputHandler({"preEditUrl" : canvas.toDataURL(),
+                                    "width" : canvas.width,
+                                    "height" : canvas.height});
         }
 
 
