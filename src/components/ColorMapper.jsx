@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
+import {toggleAliasing} from './utilities';
 import Papa from 'papaparse';
 import RgbQuant from 'rgbquant';
 import Slider from './Slider';
-import {toggleAliasing} from './utilities';
+import Palette from './Palette';
+
 
 class ColorMapper extends Component {
     state = {
         colors: 10,
         rgb_dmc: [],
         rgb_dmc_pure: [],
-
-        defaultColors: 50
+        defaultColors: 50,
+        palette: {}
     }
 
     onImgLoad () {
@@ -36,7 +38,7 @@ class ColorMapper extends Component {
 
             ctx.drawImage(img, 0, 0);
 
-            let imgdt = new ImageData(img_red, img.height, img.width)
+            let imgdt = new ImageData(img_red, img.width, img.height)
 
             var palette = {}
             for (let i = 0; i < img_red.length; i += 4) {
@@ -51,17 +53,18 @@ class ColorMapper extends Component {
                     if (r-rd === 0 && 
                         g-gd === 0 &&
                         b-bd === 0) {                        
-                        if ( !( i/4 in palette) ) {
-                            palette[i/4] = [this.state.rgb_dmc[j][0],
-                                            this.state.rgb_dmc[j][1],
+                        if (!(this.state.rgb_dmc[j][0] in palette)) {
+                            palette[this.state.rgb_dmc[j][0]] = 
+                                            [this.state.rgb_dmc[j][1],
                                             this.state.rgb_dmc[j][5],
                                             1];
                         } else {
-                            palette[i/4][3] ++;
+                            palette[this.state.rgb_dmc[j][0]][2] ++;
                         }
                     } 
                 }
             }
+            this.setState({palette: palette});
 
             ctx.putImageData(imgdt, 0, 0)
             toggleAliasing(ctx, false);
@@ -105,7 +108,10 @@ class ColorMapper extends Component {
     render() {
         return (
             <div>
-                <canvas id="ColorMapperCanvas"></canvas>
+                <div>
+                    <canvas id="ColorMapperCanvas"></canvas>
+                    <Palette palette={this.state.palette} />
+                </div>
                 <Slider name = "colorSlider" 
                             min = "5"
                             max = "100"

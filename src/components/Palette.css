@@ -1,0 +1,22 @@
+.Palette {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    height: 400px;
+    width: 400px;
+}
+
+
+.paletteColor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: 2em;
+}
+
+.paletteColor p {
+    margin-right: 1em;
+    margin-left: 1em;
+    margin-top: 0em;
+    margin-bottom: 0em;
+}
