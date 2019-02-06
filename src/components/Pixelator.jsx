@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Slider from './Slider';
+import {toggleAliasing} from './utilities';
 
 
 class ImageContainer extends Component {
@@ -72,18 +73,3 @@ class ImageContainer extends Component {
 }
 
 export default ImageContainer
-
-var toggleAliasing = (ctx, toggle) => {
-    if (!toggle) {
-        ctx.imageSmoothingEnabled = false;
-        ctx.mozImageSmoothingEnabled = false;
-        ctx.webkitImageSmoothingEnabled = false;
-        ctx.msImageSmoothingEnabled = false;
-        }
-    else {
-        ctx.imageSmoothingEnabled = true;
-        ctx.mozImageSmoothingEnabled = true;
-        ctx.webkitImageSmoothingEnabled = true;
-        ctx.msImageSmoothingEnabled = true;
-    }
-}

@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import Papa from 'papaparse';
 import RgbQuant from 'rgbquant';
 import Slider from './Slider';
+import {toggleAliasing} from './utilities';
 
 class ColorMapper extends Component {
     state = {
         colors: 10,
         rgb_dmc: [],
         rgb_dmc_pure: [],
-        defaultColors: 40
+
+        defaultColors: 50
     }
 
     onImgLoad () {
@@ -34,35 +36,32 @@ class ColorMapper extends Component {
 
             ctx.drawImage(img, 0, 0);
 
-            let imgdt = new ImageData(new Uint8ClampedArray(img_red), img.height, img.width)
+            let imgdt = new ImageData(img_red, img.height, img.width)
 
-            /*
-            for (let i = 0; i < imgdt.data.length; i += 4) {
-                let r = imgdt.data[i + 0];
-                let g = imgdt.data[i + 1];
-                let b = imgdt.data[i + 2];
-                let dist = 1000;
-                let idx = 0;
+            var palette = {}
+            for (let i = 0; i < img_red.length; i += 4) {
+                let r = img_red[i + 0];
+                let g = img_red[i + 1];
+                let b = img_red[i + 2];
                 for (let j = 0; j < this.state.rgb_dmc.length; j += 1) {
                     let rd = this.state.rgb_dmc[j][2];
                     let gd = this.state.rgb_dmc[j][3];
                     let bd = this.state.rgb_dmc[j][4];
 
-                    let new_dist = Math.sqrt((r-rd)**2 +
-                                            (g-gd)**2 +
-                                            (b-bd)**2)
-                    if (new_dist < dist) {
-                        dist = new_dist
-                        idx = j;
-                    }
+                    if (r-rd === 0 && 
+                        g-gd === 0 &&
+                        b-bd === 0) {                        
+                        if ( !( i/4 in palette) ) {
+                            palette[i/4] = [this.state.rgb_dmc[j][0],
+                                            this.state.rgb_dmc[j][1],
+                                            this.state.rgb_dmc[j][5],
+                                            1];
+                        } else {
+                            palette[i/4][3] ++;
+                        }
+                    } 
                 }
-                imgdt.data[i + 0] = this.state.rgb_dmc[idx][2];
-                imgdt.data[i + 1] = this.state.rgb_dmc[idx][3];
-                imgdt.data[i + 2] = this.state.rgb_dmc[idx][4];
             }
-            */
-
-
 
             ctx.putImageData(imgdt, 0, 0)
             toggleAliasing(ctx, false);
@@ -79,13 +78,14 @@ class ColorMapper extends Component {
 
             complete: (results) => {
                 this.setState({ rgb_dmc: results.data.slice(1) })
+                let rgb_dmc_pure = this.state.rgb_dmc.map( (subarray) => {
+                    return subarray.slice(2,5);
+                })
+                this.setState({ rgb_dmc_pure: rgb_dmc_pure });
             }
         });
 
-        let rgb_dmc_pure = this.state.rgb_dmc.map( (subarray) => {
-                return subarray.slice(2,5);
-        })
-        this.setState({ rgb_dmc_pure: rgb_dmc_pure });
+        
     }
 
     componentDidUpdate(prevProps) {
@@ -108,7 +108,7 @@ class ColorMapper extends Component {
                 <canvas id="ColorMapperCanvas"></canvas>
                 <Slider name = "colorSlider" 
                             min = "5"
-                            max = "50"
+                            max = "100"
                             handler = {this.handleSlider}
                             defaultValue = {this.state.defaultColors} />
                 
@@ -118,19 +118,3 @@ class ColorMapper extends Component {
 }
 
 export default ColorMapper;
-
-
-var toggleAliasing = (ctx, toggle) => {
-    if (!toggle) {
-        ctx.imageSmoothingEnabled = false;
-        ctx.mozImageSmoothingEnabled = false;
-        ctx.webkitImageSmoothingEnabled = false;
-        ctx.msImageSmoothingEnabled = false;
-        }
-    else {
-        ctx.imageSmoothingEnabled = true;
-        ctx.mozImageSmoothingEnabled = true;
-        ctx.webkitImageSmoothingEnabled = true;
-        ctx.msImageSmoothingEnabled = true;
-    }
-}
