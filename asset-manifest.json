@@ -1,13 +1,13 @@
 {
-  "main.css": "/cross_stitch_generator/static/css/main.c476f752.chunk.css",
-  "main.js": "/cross_stitch_generator/static/js/main.fefbf8c4.chunk.js",
-  "main.js.map": "/cross_stitch_generator/static/js/main.fefbf8c4.chunk.js.map",
-  "static/js/1.d1cf2b5a.chunk.js": "/cross_stitch_generator/static/js/1.d1cf2b5a.chunk.js",
-  "static/js/1.d1cf2b5a.chunk.js.map": "/cross_stitch_generator/static/js/1.d1cf2b5a.chunk.js.map",
+  "main.css": "/cross_stitch_generator/static/css/main.86f2f499.chunk.css",
+  "main.js": "/cross_stitch_generator/static/js/main.94878457.chunk.js",
+  "main.js.map": "/cross_stitch_generator/static/js/main.94878457.chunk.js.map",
+  "static/js/1.23c90cc0.chunk.js": "/cross_stitch_generator/static/js/1.23c90cc0.chunk.js",
+  "static/js/1.23c90cc0.chunk.js.map": "/cross_stitch_generator/static/js/1.23c90cc0.chunk.js.map",
   "runtime~main.js": "/cross_stitch_generator/static/js/runtime~main.a64a8c8d.js",
   "runtime~main.js.map": "/cross_stitch_generator/static/js/runtime~main.a64a8c8d.js.map",
-  "static/css/main.c476f752.chunk.css.map": "/cross_stitch_generator/static/css/main.c476f752.chunk.css.map",
+  "static/css/main.86f2f499.chunk.css.map": "/cross_stitch_generator/static/css/main.86f2f499.chunk.css.map",
   "index.html": "/cross_stitch_generator/index.html",
-  "precache-manifest.1a1b7ef5f08eae64c311256e1972ab1f.js": "/cross_stitch_generator/precache-manifest.1a1b7ef5f08eae64c311256e1972ab1f.js",
+  "precache-manifest.a5775d837dc2f65cd2e5297586384616.js": "/cross_stitch_generator/precache-manifest.a5775d837dc2f65cd2e5297586384616.js",
   "service-worker.js": "/cross_stitch_generator/service-worker.js"
 }
