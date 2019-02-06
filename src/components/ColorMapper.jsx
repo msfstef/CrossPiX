@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import Papa from 'papaparse';
-import RgbQuant from 'rgbquant'
+import RgbQuant from 'rgbquant';
+import Slider from './Slider';
 
 class ColorMapper extends Component {
-
-    rgb_dmc = [];
+    state = {
+        colors: 10,
+        rgb_dmc: [],
+        rgb_dmc_pure: [],
+        defaultColors: 40
+    }
 
     onImgLoad () {
         var img = new Image();
@@ -17,29 +22,31 @@ class ColorMapper extends Component {
             canvas.width = this.props.initWidth;
             canvas.height = this.props.initHeight;
 
+            let reducer = new RgbQuant({
+                colors: this.state.colors,
+                palette: this.state.rgb_dmc_pure,
+                reIndex: false,
+                method: 1
+            });
             
-            this.reducer.sample(img);
-            let img_red = this.reducer.reduce(img)
+            reducer.sample(img);
+            let img_red = new Uint8ClampedArray(reducer.reduce(img))
 
-
-            toggleAliasing(ctx, false);
             ctx.drawImage(img, 0, 0);
-            let imgdt = ctx.getImageData(0, 0, img.width, img.height)
 
-            for (let i = 0; i < imgdt.data.length; i += 1) {
-                imgdt.data[i] = img_red[i];
-            }
-            
+            let imgdt = new ImageData(new Uint8ClampedArray(img_red), img.height, img.width)
+
+            /*
             for (let i = 0; i < imgdt.data.length; i += 4) {
                 let r = imgdt.data[i + 0];
                 let g = imgdt.data[i + 1];
                 let b = imgdt.data[i + 2];
                 let dist = 1000;
                 let idx = 0;
-                for (let j = 0; j < this.rgb_dmc.length; j += 1) {
-                    let rd = this.rgb_dmc[j][2];
-                    let gd = this.rgb_dmc[j][3];
-                    let bd = this.rgb_dmc[j][4];
+                for (let j = 0; j < this.state.rgb_dmc.length; j += 1) {
+                    let rd = this.state.rgb_dmc[j][2];
+                    let gd = this.state.rgb_dmc[j][3];
+                    let bd = this.state.rgb_dmc[j][4];
 
                     let new_dist = Math.sqrt((r-rd)**2 +
                                             (g-gd)**2 +
@@ -49,10 +56,11 @@ class ColorMapper extends Component {
                         idx = j;
                     }
                 }
-                imgdt.data[i + 0] = this.rgb_dmc[idx][2];
-                imgdt.data[i + 1] = this.rgb_dmc[idx][3];
-                imgdt.data[i + 2] = this.rgb_dmc[idx][4];
+                imgdt.data[i + 0] = this.state.rgb_dmc[idx][2];
+                imgdt.data[i + 1] = this.state.rgb_dmc[idx][3];
+                imgdt.data[i + 2] = this.state.rgb_dmc[idx][4];
             }
+            */
 
 
 
@@ -66,44 +74,43 @@ class ColorMapper extends Component {
 
     
     componentDidMount () {
-        this.reducer_opts = {
-            colors: 10,             // desired palette size
-            method: 2,               // histogram method, 2: min-population threshold within subregions; 1: global top-population
-            boxSize: [64,64],        // subregion dims (if method = 2)
-            boxPxls: 2,              // min-population threshold (if method = 2)
-            initColors: 4096,        // # of top-occurring colors  to start with (if method = 1)
-            minHueCols: 0,           // # of colors per hue group to evaluate regardless of counts, to retain low-count hues
-            dithKern: null,          // dithering kernel name, see available kernels in docs below
-            dithDelta: 0,            // dithering threshhold (0-1) e.g: 0.05 will not dither colors with <= 5% difference
-            dithSerp: false,         // enable serpentine pattern dithering
-            palette: [],             // a predefined palette to start with in r,g,b tuple format: [[r,g,b],[r,g,b]...]
-            reIndex: false,          // affects predefined palettes only. if true, allows compacting of sparsed palette once target palette size is reached. also enables palette sorting.
-            useCache: true,          // enables caching for perf usually, but can reduce perf in some cases, like pre-def palettes
-            cacheFreq: 10,           // min color occurance count needed to qualify for caching
-            colorDist: "euclidean",  // method used to determine color distance, can also be "manhattan"
-        };
-
         Papa.parse("/assets/rgb_to_dmc.csv", {
             download: true,
 
             complete: (results) => {
-                this.rgb_dmc = results.data.slice(1);
+                this.setState({ rgb_dmc: results.data.slice(1) })
             }
         });
+
+        let rgb_dmc_pure = this.state.rgb_dmc.map( (subarray) => {
+                return subarray.slice(2,5);
+        })
+        this.setState({ rgb_dmc_pure: rgb_dmc_pure });
     }
 
     componentDidUpdate(prevProps) {
         if(this.props.fileUrl !== prevProps.fileUrl)
         {   
-            this.reducer = new RgbQuant(this.opts);
+            document.getElementById("colorSlider").value = this.state.defaultColors;
+            this.setState({ colors: this.state.defaultColors});
             this.onImgLoad();
         }
+    }
+
+    handleSlider = () => {
+        this.setState({ colors : document.getElementById("colorSlider").value});
+        this.onImgLoad();
     }
 
     render() {
         return (
             <div>
                 <canvas id="ColorMapperCanvas"></canvas>
+                <Slider name = "colorSlider" 
+                            min = "5"
+                            max = "50"
+                            handler = {this.handleSlider}
+                            defaultValue = {this.state.defaultColors} />
                 
             </div>
         );

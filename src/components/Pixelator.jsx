@@ -61,9 +61,11 @@ class ImageContainer extends Component {
         return (
             <div>
                 <canvas id="PixelatorCanvas"></canvas>
-                <Slider name = "scaleSlider" 
+                <Slider name = "scaleSlider"
+                            min = "1"
+                            max = "20"
                             handler = {this.handleSlider}
-                            defaultScale = {this.state.defaultScale} />             
+                            defaultValue = {this.state.defaultScale} />
             </div>
         );
     }

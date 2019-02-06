@@ -4,8 +4,9 @@ class Slider extends Component {
     render() {
         return (
             <div>
-                <input id={this.props.name} type="range" min="1" max="20" 
-                    defaultValue = {this.props.defaultScale}
+                <input id={this.props.name} type="range" 
+                    min={this.props.min} max={this.props.max}
+                    defaultValue = {this.props.defaultValue}
                     onChange={() => {this.props.handler()}} />
             </div>
         );

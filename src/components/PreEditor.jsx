@@ -31,7 +31,7 @@ class PreEditor extends Component {
 
     componentDidUpdate(prevProps) {
         if(this.props.fileUrl !== prevProps.fileUrl)
-        {
+        {   
             this.onImgLoad()
         }
     }
