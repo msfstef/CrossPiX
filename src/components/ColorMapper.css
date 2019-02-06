@@ -1,0 +1,12 @@
+.PicPalette {
+    display:flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.Palette {
+    margin-left: 2em
+}
+
+#ColorMapperCanvas {
+}

@@ -4,6 +4,7 @@ import Papa from 'papaparse';
 import RgbQuant from 'rgbquant';
 import Slider from './Slider';
 import Palette from './Palette';
+import './ColorMapper.css';
 
 
 class ColorMapper extends Component {
@@ -108,7 +109,7 @@ class ColorMapper extends Component {
     render() {
         return (
             <div>
-                <div>
+                <div className="PicPalette">
                     <canvas id="ColorMapperCanvas"></canvas>
                     <Palette palette={this.state.palette} />
                 </div>
