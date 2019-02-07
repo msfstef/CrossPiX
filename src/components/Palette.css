@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    width: 400px;
-    max-height: 400px;
+    width: 30em;
+    max-height: 80%;
 }
 
 

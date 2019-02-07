@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PreEditor from './PreEditor';
 import Pixelator from './Pixelator';
 import ColorMapper from './ColorMapper';
+import './AppContainer.css';
 
 
 class AppContainer extends Component {
@@ -27,7 +28,7 @@ class AppContainer extends Component {
 
     render() {
         return (
-            <div>
+            <div id="AppContainer">
                 <input type="file" id="img_upload" accept="image/*" 
                     onChange= {()=>{this.handleFile()}} />
                 <PreEditor fileUrl = {this.state.fileUrl}

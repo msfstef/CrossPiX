@@ -58,8 +58,8 @@ class ImageContainer extends Component {
     
     render() {
         return (
-            <div>
-                <canvas id="PixelatorCanvas"></canvas>
+            <div className="picEditor">
+                <canvas className="picCanvas" id="PixelatorCanvas"></canvas>
                 <Slider name = "horStitchesSlider"
                             min = "10"
                             max = "150"

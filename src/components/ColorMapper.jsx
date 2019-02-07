@@ -4,7 +4,6 @@ import Papa from 'papaparse';
 import {quantize_img} from './kmeans.js'
 import Slider from './Slider';
 import Palette from './Palette';
-import './ColorMapper.css';
 
 
 class ColorMapper extends Component {
@@ -22,9 +21,7 @@ class ColorMapper extends Component {
         img.src = this.props.fileUrl;
 
         var canvas = document.getElementById('ColorMapperCanvas');
-        var buffer = document.createElement('canvas');
         var ctx = canvas.getContext('2d');
-        var buffer_ctx = buffer.getContext('2d');
         
         img.onload = () => {
             let src_qt = quantize_img(img, this.state.colors)
@@ -34,28 +31,10 @@ class ColorMapper extends Component {
         img_qt.onload = () => {
             canvas.width = this.props.initWidth;
             canvas.height = canvas.width*this.props.proportion;
-            buffer.width = canvas.width;
-            buffer.height = canvas.height;
-            
-            /*
-            let reducer = new RgbQuant({
-                colors: this.state.colors,
-                palette: this.state.rgb_dmc_pure,
-                method: 1
-            });
-            
-            reducer.sample(img_qt);
 
-            let img_red = new Uint8ClampedArray(reducer.reduce(img_qt))
-            
-            let imgdt = new ImageData(img_red, img.width, img.height)
-            */
-
-
-
-            buffer_ctx.drawImage(img_qt, 0, 0);
+            ctx.drawImage(img_qt, 0, 0);
                
-            let imgdt = buffer_ctx.getImageData(0, 0, img_qt.width, img_qt.height);
+            let imgdt = ctx.getImageData(0, 0, img_qt.width, img_qt.height);
             let new_data = new Array(imgdt.data.length);
 
 
@@ -141,11 +120,9 @@ class ColorMapper extends Component {
 
     render() {
         return (
-            <div>
-                <div className="PicPalette">
-                    <canvas id="ColorMapperCanvas"></canvas>
-                    <Palette palette={this.state.palette} />
-                </div>
+            <div className="picEditor">
+                <canvas className="picCanvas" id="ColorMapperCanvas"></canvas>
+                <Palette palette={this.state.palette} />
                 <Slider name = "colorSlider" 
                             min = "2"
                             max = "50"

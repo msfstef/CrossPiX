@@ -1,0 +1,37 @@
+#AppContainer {
+    display: flex;
+    width: 100vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.picEditor {
+    display:flex;
+    align-items: center;
+    width: 80vw;
+    height: 30vh;
+    margin: auto;
+    margin-bottom: 1%;
+
+    border: solid black 2px;
+    border-radius: 3%;
+}
+
+.picCanvas {
+    margin: 1%; 
+    margin-right:auto;
+    height: 80%;
+}
+
+#ColorMapperCanvas {
+    margin-right: 1%;
+}
+
+.Palette {
+    margin-right: auto;
+}
+
+.Slider {
+    width: 25vh;
+}

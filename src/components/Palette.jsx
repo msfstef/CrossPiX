@@ -29,6 +29,7 @@ class Palette extends Component {
                     <div style={boxStyle} className="paletteBox">
                     </div>
                     <p>{data_sorted[i][1]}</p>
+                    <p>{"DMC: " + data_sorted[i][0]}</p>
                     <p>{"Count: " + data_sorted[i][3]}</p>
                 </div>
                 

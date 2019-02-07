@@ -13,8 +13,13 @@ class PreEditor extends Component {
 
         img.onload = () => {
             let proportion = img.height/img.width;
-            canvas.width = 400;
-            canvas.height = canvas.width*proportion;
+            if (proportion < 1) {
+                canvas.width = 300;
+                canvas.height = canvas.width * proportion;
+            } else {
+                canvas.height = 300;
+                canvas.width = canvas.height / proportion;
+            }
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             var w = canvas.width;
@@ -54,8 +59,8 @@ class PreEditor extends Component {
 
     render() {
         return (
-            <div>
-                <canvas id="PreEditorCanvas"></canvas>    
+            <div className="picEditor">
+                <canvas className="picCanvas" id="PreEditorCanvas"></canvas>    
             </div>
         );
     }
