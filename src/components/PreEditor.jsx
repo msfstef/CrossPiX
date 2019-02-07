@@ -20,7 +20,7 @@ class PreEditor extends Component {
             var w = canvas.width;
             var h = canvas.height;
             ctx.drawImage(img, 0, 0, w, h);
-            
+
             /* Make transparent pixels white */
             let imgc = ctx.getImageData(0, 0, canvas.width, canvas.height)
 
