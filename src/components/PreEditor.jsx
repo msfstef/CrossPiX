@@ -15,7 +15,7 @@ class PreEditor extends Component {
             let proportion = img.height/img.width;
             canvas.width = 400;
             canvas.height = canvas.width*proportion;
-            
+
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             var w = canvas.width;
             var h = canvas.height;
@@ -62,3 +62,40 @@ class PreEditor extends Component {
 }
 
 export default PreEditor;
+
+
+/*
+function dragAction(img, context, canvas) {
+    var currentX = 0;
+    var currentY = 0;
+    var isDraggable = false;
+
+    canvas.onmousedown = function(e) {
+        var mouseX = e.pageX - this.offsetLeft;
+        var mouseY = e.pageY - this.offsetTop;
+
+        if (mouseX >= (currentX - img.width/2) &&
+            mouseX <= (currentX + img.width/2) &&
+            mouseY >= (currentY - img.height/2) &&
+            mouseY <= (currentY + img.height/2)) {
+        isDraggable = true;
+        }
+    };
+    canvas.onmousemove = function(e) {
+        if (isDraggable) {
+        currentX = e.pageX - this.offsetLeft;
+        currentY = e.pageY - this.offsetTop;
+        context.fillStyle = '#fff';
+        context.fillRect(0,0, canvas.width, canvas.height);
+        context.drawImage(img, currentX-(canvas.width/2), currentY-(canvas.height/2),
+                                canvas.width, canvas.height);
+        }
+    };
+    canvas.onmouseup = function(e) {
+        isDraggable = false;
+    };
+    canvas.onmouseout = function(e) {
+        isDraggable = false;
+    };
+}
+*/

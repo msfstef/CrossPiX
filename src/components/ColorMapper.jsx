@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {toggleAliasing} from './utilities';
 import Papa from 'papaparse';
-import RgbQuant from 'rgbquant';
 import {quantize_img} from './kmeans.js'
 import Slider from './Slider';
 import Palette from './Palette';
@@ -13,7 +12,7 @@ class ColorMapper extends Component {
         colors: 10,
         rgb_dmc: [],
         rgb_dmc_pure: [],
-        defaultColors: 50,
+        defaultColors: 10,
         palette: {}
     }
 
@@ -67,7 +66,7 @@ class ColorMapper extends Component {
                     let gd = this.state.rgb_dmc[j][3];
                     let bd = this.state.rgb_dmc[j][4];
 
-                    let new_dist = Math.hypot(r-rd, g-gd, b-bd);
+                    let new_dist = (r-rd)*(r-rd) + (g-gd)*(g-gd) + (b-bd)*(b-bd);
 
                     if (new_dist < dist) {
                         dist = new_dist;
@@ -141,7 +140,7 @@ class ColorMapper extends Component {
                 </div>
                 <Slider name = "colorSlider" 
                             min = "5"
-                            max = "100"
+                            max = "50"
                             handler = {this.handleSlider}
                             defaultValue = {this.state.defaultColors} />
                 
