@@ -21,7 +21,9 @@ class ColorMapper extends Component {
         img.src = this.props.fileUrl;
 
         var canvas = document.getElementById('ColorMapperCanvas');
+        var buffer = document.createElement('canvas');
         var ctx = canvas.getContext('2d');
+        var ctxb = buffer.getContext('2d');
         
         img.onload = () => {
             let src_qt = quantize_img(img, this.state.colors)
@@ -31,10 +33,12 @@ class ColorMapper extends Component {
         img_qt.onload = () => {
             canvas.width = this.props.initWidth;
             canvas.height = canvas.width*this.props.proportion;
+            buffer.width = canvas.width;
+            buffer.height = canvas.height
 
-            ctx.drawImage(img_qt, 0, 0);
+            ctxb.drawImage(img_qt, 0, 0);
                
-            let imgdt = ctx.getImageData(0, 0, img_qt.width, img_qt.height);
+            let imgdt = ctxb.getImageData(0, 0, img_qt.width, img_qt.height);
             let new_data = new Array(imgdt.data.length);
 
 
@@ -79,9 +83,9 @@ class ColorMapper extends Component {
 
             imgdt.data.set(new_data);
 
-            ctx.putImageData(imgdt, 0, 0)
+            ctxb.putImageData(imgdt, 0, 0)
             toggleAliasing(ctx, false);
-            ctx.drawImage(canvas, 0, 0, img_qt.width, img_qt.height, 
+            ctx.drawImage(buffer, 0, 0, img_qt.width, img_qt.height, 
                                 0, 0, canvas.width, canvas.height);
 
         }
