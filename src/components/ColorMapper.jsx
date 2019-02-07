@@ -22,7 +22,9 @@ class ColorMapper extends Component {
         img.src = this.props.fileUrl;
 
         var canvas = document.getElementById('ColorMapperCanvas');
+        var buffer = document.createElement('canvas');
         var ctx = canvas.getContext('2d');
+        var buffer_ctx = buffer.getContext('2d');
         
         img.onload = () => {
             let src_qt = quantize_img(img, this.state.colors)
@@ -32,6 +34,8 @@ class ColorMapper extends Component {
         img_qt.onload = () => {
             canvas.width = this.props.initWidth;
             canvas.height = canvas.width*this.props.proportion;
+            buffer.width = canvas.width;
+            buffer.height = canvas.height;
             
             /*
             let reducer = new RgbQuant({
@@ -49,17 +53,19 @@ class ColorMapper extends Component {
 
 
 
-            ctx.drawImage(img_qt, 0, 0);
+            buffer_ctx.drawImage(img_qt, 0, 0);
                
-            let imgdt = ctx.getImageData(0, 0, img_qt.width, img_qt.height)
-            let data = imgdt.data;
+            let imgdt = buffer_ctx.getImageData(0, 0, img_qt.width, img_qt.height);
+            let new_data = new Array(imgdt.data.length);
+
 
             var palette = {}
-            for (let i = 0; i < data.length; i += 4) {
-                let r = data[i + 0];
-                let g = data[i + 1];
-                let b = data[i + 2];
-                let dist = 1000;
+            for (let i = 0; i < imgdt.data.length; i += 4) {
+                let r = imgdt.data[i + 0];
+                let g = imgdt.data[i + 1];
+                let b = imgdt.data[i + 2];
+                
+                let dist = 99999999;
                 let idx = 0;
                 for (let j = 0; j < this.state.rgb_dmc.length; j += 1) {
                     let rd = this.state.rgb_dmc[j][2];
@@ -71,16 +77,16 @@ class ColorMapper extends Component {
                     if (new_dist < dist) {
                         dist = new_dist;
                         idx = j;
+                        if (new_dist < 2) break;
                     }
-                    if (dist < 5) {
-                        break;
-                    }
+
                 }
 
-                r = this.state.rgb_dmc[idx][2];
-                g = this.state.rgb_dmc[idx][3];
-                b = this.state.rgb_dmc[idx][4];
-
+                new_data[i+0] = this.state.rgb_dmc[idx][2];
+                new_data[i+1] = this.state.rgb_dmc[idx][3];
+                new_data[i+2] = this.state.rgb_dmc[idx][4];
+                new_data[i+3] = 255;
+                
                 if (!(this.state.rgb_dmc[idx][0] in palette)) {
                     palette[this.state.rgb_dmc[idx][0]] = 
                                     [this.state.rgb_dmc[idx][1],
@@ -91,6 +97,8 @@ class ColorMapper extends Component {
                 } 
             }
             this.setState({palette: palette});
+
+            imgdt.data.set(new_data);
 
             ctx.putImageData(imgdt, 0, 0)
             toggleAliasing(ctx, false);
@@ -139,7 +147,7 @@ class ColorMapper extends Component {
                     <Palette palette={this.state.palette} />
                 </div>
                 <Slider name = "colorSlider" 
-                            min = "5"
+                            min = "2"
                             max = "50"
                             handler = {this.handleSlider}
                             defaultValue = {this.state.defaultColors} />
