@@ -8,7 +8,7 @@ class AppContainer extends Component {
 
     state = {
         width: 0,
-        height: 0,
+        proportion: 0,
         fileUrl : '',
         preEditUrl : '',
         pixelUrl : ''
@@ -33,11 +33,11 @@ class AppContainer extends Component {
                 <PreEditor fileUrl = {this.state.fileUrl}
                             outputHandler = {this.outputHandler}  />
                 <Pixelator fileUrl = {this.state.preEditUrl} 
-                            outputHandler = {this.outputHandler} />
+                            outputHandler = {this.outputHandler}  />
                 <ColorMapper fileUrl = {this.state.pixelUrl}
                             outputHandler = {this.outputHandler}
                             initWidth = {this.state.width}
-                            initHeight = {this.state.height}  />
+                            proportion = {this.state.proportion}  />
                 
             </div>
         );

@@ -5,12 +5,12 @@ import {toggleAliasing} from './utilities';
 
 class ImageContainer extends Component {
     state = {
-        defaultScale: 5,
-        scale: 5
+        defaultHorStitches: 75,
+        horStitches: 75
     }
 
     handleSlider = () => {
-        this.setState({ scale : document.getElementById("scaleSlider").value});
+        this.setState({ horStitches : document.getElementById("horStitchesSlider").value});
         this.onImgLoad();
     }
 
@@ -28,8 +28,8 @@ class ImageContainer extends Component {
             var ctx = canvas.getContext('2d');
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            var w = canvas.width / this.state.scale;
-            var h = canvas.height / this.state.scale;
+            var w = this.state.horStitches;
+            var h = (img.height/img.width)*this.state.horStitches;
             
             canvas.width = w;
             canvas.height = h;
@@ -42,8 +42,6 @@ class ImageContainer extends Component {
             toggleAliasing(ctx, true);
             ctx.drawImage(img, 0, 0, w, h);
 
-            
-            img.style.display = 'none';
             toggleAliasing(ctx, false);
             ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
         }        
@@ -52,8 +50,8 @@ class ImageContainer extends Component {
     componentDidUpdate(prevProps) {
         if(this.props.fileUrl !== prevProps.fileUrl)
         {
-            document.getElementById("scaleSlider").value = this.state.defaultScale;
-            this.setState({ scale: this.state.defaultScale});
+            document.getElementById("horStitchesSlider").value = this.state.defaultHorStitches;
+            this.setState({ horStitches: this.state.defaultHorStitches});
             this.onImgLoad();
         }
     }
@@ -62,11 +60,11 @@ class ImageContainer extends Component {
         return (
             <div>
                 <canvas id="PixelatorCanvas"></canvas>
-                <Slider name = "scaleSlider"
-                            min = "1"
-                            max = "20"
+                <Slider name = "horStitchesSlider"
+                            min = "10"
+                            max = "150"
                             handler = {this.handleSlider}
-                            defaultValue = {this.state.defaultScale} />
+                            defaultValue = {this.state.defaultHorStitches} />
             </div>
         );
     }

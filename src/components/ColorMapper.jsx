@@ -25,7 +25,7 @@ class ColorMapper extends Component {
 
         img.onload = () => {
             canvas.width = this.props.initWidth;
-            canvas.height = this.props.initHeight;
+            canvas.height = canvas.width*this.props.proportion;
 
             let reducer = new RgbQuant({
                 colors: this.state.colors,
@@ -70,7 +70,8 @@ class ColorMapper extends Component {
             ctx.putImageData(imgdt, 0, 0)
             toggleAliasing(ctx, false);
             ctx.drawImage(canvas, 0, 0, img.width, img.height, 
-                                0, 0, this.props.initWidth, this.props.initHeight);
+                                0, 0, this.props.initWidth, 
+                                        this.props.initWidth*this.props.proportion);
 
         }
     }
