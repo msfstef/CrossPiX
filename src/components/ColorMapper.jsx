@@ -17,7 +17,6 @@ class ColorMapper extends Component {
 
     onImgLoad () {
         var img = new Image();
-        var img_qt = new Image();
         img.src = this.props.fileUrl;
 
         var canvas = document.getElementById('ColorMapperCanvas');
@@ -27,8 +26,9 @@ class ColorMapper extends Component {
         
         img.onload = () => {
             let src_qt = quantize_img(img, this.state.colors)
+            var img_qt = new Image();
             img_qt.src = src_qt;
-        }
+        
 
         img_qt.onload = () => {
             canvas.width = this.props.initWidth;
@@ -88,6 +88,7 @@ class ColorMapper extends Component {
             ctx.drawImage(buffer, 0, 0, img_qt.width, img_qt.height, 
                                 0, 0, canvas.width, canvas.height);
 
+        }
         }
     }
 
