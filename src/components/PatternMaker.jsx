@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
-import {toggleAliasing, shuffle} from '../utilities/utilities';
-import {stitch_symbols} from '../utilities/symbols.js';
+import {toggleAliasing} from '../utilities/utilities';
 
 class PatternMaker extends Component {
-    state = {
-        symbols: []
-    }
-
-    componentDidMount () {
-        this.setState({symbols: stitch_symbols});
-    }
-
     onImgLoad () {
         var img = new Image();
         img.src = this.props.fileUrl;
@@ -46,7 +37,6 @@ class PatternMaker extends Component {
             let imgdt = ctxb.getImageData(0, 0, buffer.width, buffer.height).data           
 
             let palette = this.props.palette;
-            let ctr = 0;
             
             for (let i = 0; i < buffer.width; i += scale) {
                 for (let j = 0; j < buffer.height; j += scale) {
@@ -57,10 +47,6 @@ class PatternMaker extends Component {
                     let char = ""
 
                     if (color in palette) {
-                        if (!("symb" in palette[color])) {
-                            palette[color]["symb"] = this.state.symbols[ctr];
-                            ctr++;
-                        }
                         char = palette[color]["symb"];
                     }
 
@@ -92,7 +78,8 @@ class PatternMaker extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if(this.props.fileUrl !== prevProps.fileUrl)
+        if(this.props.fileUrl !== prevProps.fileUrl ||
+            this.props.palette !== prevProps.palette)
         {
             this.onImgLoad();
         }
@@ -102,15 +89,6 @@ class PatternMaker extends Component {
         return (
             <div className="picEditor Pattern">
                 <canvas className="picCanvas Pattern" id="PatternMakerCanvas"></canvas>
-                <input className="button" type="submit"
-                        value="Randomize Symbols"
-                        onClick={() => {
-                            shuffle(this.state.symbols);
-                            for (let key in this.props.palette) {
-                                delete this.props.palette[key]["symb"];
-                            }
-                            this.onImgLoad();
-                            }} />
             </div>
         );
     }

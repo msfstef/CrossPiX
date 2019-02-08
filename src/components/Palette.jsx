@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import './Palette.css';
 
 class Palette extends Component {
-
-    componentDidUpdate () {
-
-    }
-
     render() {
         let data = this.props.palette
         let data_sorted = []
@@ -17,31 +12,46 @@ class Palette extends Component {
             data_sorted.push([data[key]["code"], 
                             data[key]["name"], 
                             data[key]["hex"], 
-                            data[key]["count"]]);
+                            data[key]["count"],
+                            data[key]["symb"]]);
         }
         data_sorted.sort((a, b) => {return b[3]-a[3]})
 
         for (let i = 0; i < data_sorted.length; i++) {
             let boxStyle = {
-                backgroundColor: "#" + data_sorted[i][2],
-                height: "20px",
-                width: "40px"
+                backgroundColor: "#" + data_sorted[i][2]
             }
+
             colors.push(
-                <div key={data_sorted[i]} className="paletteColor">
+                <tr key={data_sorted[i]} className="paletteColor">
+                    <td>
                     <div style={boxStyle} className="paletteBox">
+                        <span className="paletteSymb">{data_sorted[i][4]}</span>
                     </div>
-                    <p>{data_sorted[i][1]}</p>
-                    <p>{"DMC: " + data_sorted[i][0]}</p>
-                    <p>{"Count: " + data_sorted[i][3]}</p>
-                </div>
+                    </td>
+                    <td>{data_sorted[i][1]}</td>
+                    <td style={{textAlign:"right"}}>{data_sorted[i][0]}</td>
+                    <td style={{textAlign:"right"}}>{data_sorted[i][3]}</td>
+                </tr>
                 
             );
         }
 
         return (
-            <div className="Palette">     
-                {colors}           
+            <div className="Palette">
+                <table className="paletteTable" >
+                <thead>
+                    <tr>
+                        <th>Color</th>
+                        <th>Name</th>
+                        <th>DMC</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {colors}
+                </tbody>
+                </table>
             </div>
         );
     }

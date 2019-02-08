@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import {toggleAliasing} from '../utilities/utilities';
+import {toggleAliasing, shuffle} from '../utilities/utilities';
 import Papa from 'papaparse';
 import {quantize_img} from '../utilities/kmeans.js';
 import {rgb_dmc_data} from '../utilities/rgb_to_dmc.js';
+import {stitch_symbols} from '../utilities/symbols.js';
 import Slider from './Slider';
 import Palette from './Palette';
 
@@ -13,7 +14,8 @@ class ColorMapper extends Component {
         rgb_dmc: [],
         rgb_dmc_pure: [],
         defaultColors: 10,
-        palette: {}
+        palette: {},
+        symbols: []
     }
 
     onImgLoad () {
@@ -42,7 +44,8 @@ class ColorMapper extends Component {
             let imgdt = ctxb.getImageData(0, 0, img_qt.width, img_qt.height);
             let new_data = new Array(imgdt.data.length);
 
-            var palette = {}
+            var palette = {};
+            let ctr = 0;
             for (let i = 0; i < imgdt.data.length; i += 4) {
                 let r = imgdt.data[i + 0];
                 let g = imgdt.data[i + 1];
@@ -83,11 +86,14 @@ class ColorMapper extends Component {
                                     code: this.state.rgb_dmc[idx][0],
                                     name: this.state.rgb_dmc[idx][1],
                                     hex: this.state.rgb_dmc[idx][5],
+                                    symb: this.state.symbols[ctr],
                                     count: 1};
+                    ctr++;
                 } else {
                     palette[color]["count"] ++;
                 } 
             }
+
             this.setState({palette: palette});
             imgdt.data.set(new_data);
 
@@ -114,6 +120,8 @@ class ColorMapper extends Component {
             }
         });
 
+        this.setState({symbols: stitch_symbols});
+
         
     }
 
@@ -136,6 +144,12 @@ class ColorMapper extends Component {
             <div className="picEditor">
                 <canvas className="picCanvas" id="ColorMapperCanvas"></canvas>
                 <Palette palette={this.state.palette} />
+                <input className="button" type="submit"
+                        value="Randomize Symbols"
+                        onClick={() => {
+                            shuffle(this.state.symbols);
+                            this.onImgLoad();
+                            }} />
                 <Slider name = "colorSlider" 
                             min = "2"
                             max = "50"

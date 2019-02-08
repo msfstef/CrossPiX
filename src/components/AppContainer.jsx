@@ -41,7 +41,8 @@ class AppContainer extends Component {
                 <ColorMapper fileUrl = {this.state.pixelUrl}
                             outputHandler = {this.outputHandler}
                             initWidth = {this.state.width}
-                            proportion = {this.state.proportion}  />
+                            proportion = {this.state.proportion}
+                            palette = {this.state.palette}  />
                 <PatternMaker fileUrl = {this.state.colorUrl} 
                             initWidth = {this.state.width}
                             proportion = {this.state.proportion} 

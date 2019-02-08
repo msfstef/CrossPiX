@@ -1,22 +1,43 @@
 .Palette {
-    display: flex;
-    flex-direction: column;
     overflow-y: auto;
-    width: 30em;
     max-height: 80%;
+    max-width: 50%;
 }
 
 
-.paletteColor {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    min-height: 2em;
+.paletteTable {
+    table-layout: auto;
+    border-collapse: collapse;
+    width: 100%;
+    white-space:nowrap;
 }
 
-.paletteColor p {
-    margin-right: 1em;
-    margin-left: 1em;
-    margin-top: 0em;
-    margin-bottom: 0em;
+.paletteTable th, td{
+    text-align: left;
+    padding-right: 10px;
+    padding-bottom: 5px;
+}
+
+
+.paletteTable th{
+}
+
+.paletteTable td{
+}
+
+.paletteBox {
+    height: 20px;
+    width: 40px;
+    outline: solid 1px black;
+}
+
+.paletteSymb {
+    display: block;
+    margin: auto;
+    background-color:#ffffffce;
+    width: 33%;
+    height: 100%;
+    text-align: center;
+    font: bold 13pt Courier;
+
 }

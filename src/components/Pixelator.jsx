@@ -5,8 +5,8 @@ import {toggleAliasing} from '../utilities/utilities';
 
 class ImageContainer extends Component {
     state = {
-        defaultHorStitches: 75,
-        horStitches: 75
+        defaultHorStitches: 50,
+        horStitches: 50
     }
 
     handleSlider = () => {
