@@ -8,7 +8,7 @@ class PatternMaker extends Component {
 
         
         img.onload = () => {
-            let scale = 20
+            let scale = 40
 
             var canvas = document.getElementById('PatternMakerCanvas');
             var buffer = document.createElement('canvas');
@@ -17,13 +17,8 @@ class PatternMaker extends Component {
             
             buffer.width = img.width*scale;
             buffer.height = img.height*scale;
-            if (buffer.width < this.props.initWidth) {
-                canvas.width = this.props.initWidth;
-                canvas.height = this.props.proportion*canvas.width;
-            } else {
-                canvas.width = buffer.width;
-                canvas.height = buffer.height;
-            }
+            canvas.width = buffer.width;
+            canvas.height = buffer.height;
             
 
             var ctx = canvas.getContext('2d');
@@ -58,7 +53,7 @@ class PatternMaker extends Component {
                     ctxb.strokeRect(i,j, scale, scale)
                     ctxb.textAlign="center"; 
                     ctxb.textBaseline = "middle";
-                    ctxb.font = "bold 10pt Courier";
+                    ctxb.font = "bold 25pt Courier";
                     if ((r+g+b)/3 < 120) {
                         ctxb.fillStyle = "#ffffff"
                     } else {
@@ -70,6 +65,10 @@ class PatternMaker extends Component {
                                     j + scale/2)
                 }
             }
+
+            this.props.outputHandler({
+                "patternUrl": buffer.toDataURL()
+            })
 
             toggleAliasing(ctx, false);
             ctx.drawImage(buffer, 0, 0, buffer.width, buffer.height,

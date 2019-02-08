@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "http://msfstef.github.io/cross_stitch_generator",
   "dependencies": {
+    "html2canvas": "^1.0.0-alpha.12",
+    "jspdf": "^1.5.3",
     "papaparse": "^4.6.3",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

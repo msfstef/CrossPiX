@@ -3,6 +3,7 @@ import PreEditor from './PreEditor';
 import Pixelator from './Pixelator';
 import ColorMapper from './ColorMapper';
 import PatternMaker from './PatternMaker';
+import GenPdf from './GenPdf';
 import './AppContainer.css';
 
 
@@ -15,7 +16,8 @@ class AppContainer extends Component {
         fileUrl : '',
         preEditUrl : '',
         pixelUrl : '',
-        colorUrl: ''
+        colorUrl: '',
+        patternUrl: ''
     }
 
     handleFile = (files) => {
@@ -44,9 +46,10 @@ class AppContainer extends Component {
                             proportion = {this.state.proportion}
                             palette = {this.state.palette}  />
                 <PatternMaker fileUrl = {this.state.colorUrl} 
-                            initWidth = {this.state.width}
-                            proportion = {this.state.proportion} 
-                            palette = {this.state.palette} />
+                            palette = {this.state.palette}
+                            outputHandler = {this.outputHandler} />
+                <GenPdf fileUrl = {this.state.patternUrl}
+                        palette = {this.state.palette} />
                 
             </div>
         );

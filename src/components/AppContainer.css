@@ -20,8 +20,7 @@
 }
 
 .picEditor.Pattern {
-    min-width: 50vmax;
-    min-height: 50vmax;
+    height: 50vmax;
 }
 
 .picCanvas {
@@ -33,9 +32,9 @@
 }
 
 .picCanvas.Pattern {
-    margin-right: auto;
+    margin: auto;
     max-height: 80%;
-    max-width: 50%;
+    max-width: 80%;
 }
 
 
