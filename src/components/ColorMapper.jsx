@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import {toggleAliasing} from './utilities';
+import {toggleAliasing} from '../utilities/utilities';
 import Papa from 'papaparse';
-import {quantize_img} from './kmeans.js'
+import {quantize_img} from '../utilities/kmeans.js';
+import {rgb_dmc_data} from '../utilities/rgb_to_dmc.js';
 import Slider from './Slider';
 import Palette from './Palette';
 
@@ -94,9 +95,7 @@ class ColorMapper extends Component {
 
     
     componentDidMount () {
-        Papa.parse("/assets/rgb_to_dmc.csv", {
-            download: true,
-
+        Papa.parse(rgb_dmc_data, {
             complete: (results) => {
                 this.setState({ rgb_dmc: results.data.slice(1) })
                 let rgb_dmc_pure = this.state.rgb_dmc.map( (subarray) => {

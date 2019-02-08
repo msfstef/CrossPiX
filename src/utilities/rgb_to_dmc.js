@@ -1,3 +1,4 @@
+var rgb_dmc_data = `
 DMC,Name,RED,GRN,BLU,#RGB
 000,blanc White,255,255,255,FFFFFF
 208,Lavender-VY DK,148,91,128,945B80
@@ -359,3 +360,6 @@ DMC,Name,RED,GRN,BLU,#RGB
 3787,Brown Grey - DK,139,109,115,8B6D73
 3790,Beige Grey - ULT DK,140,117,109,8C756D
 3799,Pewter Grey - VY DK,81,76,83,514C53
+`
+
+export {rgb_dmc_data}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Slider from './Slider';
-import {toggleAliasing} from './utilities';
+import {toggleAliasing} from '../utilities/utilities';
 
 
 class ImageContainer extends Component {
