@@ -10,8 +10,8 @@ class GenPdf extends Component {
         var margins = {
             top: 20,
             bottom: 20,
-            left: 30,
-            right: 30
+            left: 25,
+            right: 25
         }
         var width = pdf.internal.pageSize.getWidth() - margins.left - margins.right;    
         var height = pdf.internal.pageSize.getHeight() - margins.top - margins.bottom;
@@ -24,7 +24,6 @@ class GenPdf extends Component {
         pattern.src = this.props.fileUrl;
         pattern.onload = () => {
             var imagePieces = splitImage(pattern, imageSize)
-            console.log(imagePieces)
             html2canvas(paletteTable).then(
                 function(canvas) {
                     paletteImage = canvas.toDataURL("image/png");
@@ -63,7 +62,7 @@ class GenPdf extends Component {
     render() {
         return (
             <div>
-                <input type="submit" value="Generate DPF"
+                <input type="submit" value="Generate PDF"
                         onClick = {()=>{this.genPdf();}} />
             </div>
         );
