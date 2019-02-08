@@ -42,50 +42,59 @@ class ColorMapper extends Component {
             let imgdt = ctxb.getImageData(0, 0, img_qt.width, img_qt.height);
             let new_data = new Array(imgdt.data.length);
 
-
             var palette = {}
             for (let i = 0; i < imgdt.data.length; i += 4) {
                 let r = imgdt.data[i + 0];
                 let g = imgdt.data[i + 1];
                 let b = imgdt.data[i + 2];
+
                 
                 let dist = 99999999;
+                let new_dist = dist;
                 let idx = 0;
                 for (let j = 0; j < this.state.rgb_dmc.length; j += 1) {
                     let rd = this.state.rgb_dmc[j][2];
                     let gd = this.state.rgb_dmc[j][3];
                     let bd = this.state.rgb_dmc[j][4];
 
-                    let new_dist = (r-rd)*(r-rd) + (g-gd)*(g-gd) + (b-bd)*(b-bd);
+                    new_dist = (r-rd)*(r-rd) + (g-gd)*(g-gd) + (b-bd)*(b-bd);
 
                     if (new_dist < dist) {
                         dist = new_dist;
-                        idx = j;
+                        idx = j
                         if (new_dist < 2) break;
                     }
 
                 }
 
-                new_data[i+0] = this.state.rgb_dmc[idx][2];
-                new_data[i+1] = this.state.rgb_dmc[idx][3];
-                new_data[i+2] = this.state.rgb_dmc[idx][4];
+                let rnew = this.state.rgb_dmc[idx][2];
+                let gnew = this.state.rgb_dmc[idx][3];
+                let bnew = this.state.rgb_dmc[idx][4];
+
+                new_data[i+0] = rnew;
+                new_data[i+1] = gnew;
+                new_data[i+2] = bnew;
                 new_data[i+3] = 255;
+
+                let color = "" + rnew + gnew + bnew;
                 
-                if (!(this.state.rgb_dmc[idx][0] in palette)) {
-                    palette[this.state.rgb_dmc[idx][0]] = 
-                                    [this.state.rgb_dmc[idx][1],
-                                    this.state.rgb_dmc[idx][5],
-                                    1];
+                if (!(color in palette)) {
+                    palette[color] = {
+                                    code: this.state.rgb_dmc[idx][0],
+                                    name: this.state.rgb_dmc[idx][1],
+                                    hex: this.state.rgb_dmc[idx][5],
+                                    count: 1};
                 } else {
-                    palette[this.state.rgb_dmc[idx][0]][2] ++;
+                    palette[color]["count"] ++;
                 } 
             }
             this.setState({palette: palette});
-
             imgdt.data.set(new_data);
 
             ctxb.putImageData(imgdt, 0, 0)
-            this.props.outputHandler({"colorUrl" : buffer.toDataURL()});
+            this.props.outputHandler({
+                "colorUrl" : buffer.toDataURL(),
+                "palette" : palette});
             toggleAliasing(ctx, false);
             ctx.drawImage(buffer, 0, 0, img_qt.width, img_qt.height, 
                                 0, 0, canvas.width, canvas.height);

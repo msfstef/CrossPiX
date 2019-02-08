@@ -11,6 +11,7 @@ class AppContainer extends Component {
     state = {
         width: 0,
         proportion: 0,
+        palette: {},
         fileUrl : '',
         preEditUrl : '',
         pixelUrl : '',
@@ -43,7 +44,8 @@ class AppContainer extends Component {
                             proportion = {this.state.proportion}  />
                 <PatternMaker fileUrl = {this.state.colorUrl} 
                             initWidth = {this.state.width}
-                            proportion = {this.state.proportion}  />
+                            proportion = {this.state.proportion} 
+                            palette = {this.state.palette} />
                 
             </div>
         );

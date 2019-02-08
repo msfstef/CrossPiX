@@ -14,7 +14,10 @@ class Palette extends Component {
         
 
         for (var key in data) {
-            data_sorted.push([key, data[key][0], data[key][1], data[key][2]]);
+            data_sorted.push([data[key]["code"], 
+                            data[key]["name"], 
+                            data[key]["hex"], 
+                            data[key]["count"]]);
         }
         data_sorted.sort((a, b) => {return b[3]-a[3]})
 

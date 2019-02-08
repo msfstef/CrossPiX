@@ -19,11 +19,25 @@
     border-radius: 3%;
 }
 
+.picEditor.Pattern {
+    min-width: 50vmax;
+    min-height: 50vmax;
+}
+
 .picCanvas {
     margin: 1%; 
+    margin-left: 5%;
     margin-right:auto;
-    height: 80%;
+    max-height: 80%;
+    max-width: 80%;
 }
+
+.picCanvas.Pattern {
+    margin-right: auto;
+    max-height: 80%;
+    max-width: 50%;
+}
+
 
 #ColorMapperCanvas {
     margin-right: 1%;
