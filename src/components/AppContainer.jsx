@@ -48,8 +48,7 @@ class AppContainer extends Component {
                 <PatternMaker fileUrl = {this.state.colorUrl} 
                             palette = {this.state.palette}
                             outputHandler = {this.outputHandler} />
-                <GenPdf fileUrl = {this.state.patternUrl}
-                        palette = {this.state.palette} />
+                <GenPdf fileUrl = {this.state.patternUrl} />
                 
             </div>
         );
