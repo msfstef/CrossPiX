@@ -23,8 +23,6 @@ class Slider extends Component {
                     defaultValue = {this.props.defaultValue}
                     onChange={() => {
                         this.props.handler();
-                        this.setState({value : 
-                            document.getElementById(this.props.name).value});
                         }
                 } />
                 <span className="SliderValue">

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PreEditor from './PreEditor';
 import Pixelator from './Pixelator';
 import ColorMapper from './ColorMapper';
+import PatternMaker from './PatternMaker';
 import './AppContainer.css';
 
 
@@ -12,7 +13,8 @@ class AppContainer extends Component {
         proportion: 0,
         fileUrl : '',
         preEditUrl : '',
-        pixelUrl : ''
+        pixelUrl : '',
+        colorUrl: ''
     }
 
     handleFile = (files) => {
@@ -37,6 +39,9 @@ class AppContainer extends Component {
                             outputHandler = {this.outputHandler}  />
                 <ColorMapper fileUrl = {this.state.pixelUrl}
                             outputHandler = {this.outputHandler}
+                            initWidth = {this.state.width}
+                            proportion = {this.state.proportion}  />
+                <PatternMaker fileUrl = {this.state.colorUrl} 
                             initWidth = {this.state.width}
                             proportion = {this.state.proportion}  />
                 

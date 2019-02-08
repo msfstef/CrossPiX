@@ -34,8 +34,8 @@ class ColorMapper extends Component {
         img_qt.onload = () => {
             canvas.width = this.props.initWidth;
             canvas.height = canvas.width*this.props.proportion;
-            buffer.width = canvas.width;
-            buffer.height = canvas.height
+            buffer.width = img_qt.width;
+            buffer.height = img_qt.height
 
             ctxb.drawImage(img_qt, 0, 0);
                
@@ -85,10 +85,10 @@ class ColorMapper extends Component {
             imgdt.data.set(new_data);
 
             ctxb.putImageData(imgdt, 0, 0)
+            this.props.outputHandler({"colorUrl" : buffer.toDataURL()});
             toggleAliasing(ctx, false);
             ctx.drawImage(buffer, 0, 0, img_qt.width, img_qt.height, 
                                 0, 0, canvas.width, canvas.height);
-
         }
         }
     }

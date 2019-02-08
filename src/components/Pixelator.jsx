@@ -19,31 +19,29 @@ class ImageContainer extends Component {
         img.src = this.props.fileUrl;
 
         var canvas = document.getElementById('PixelatorCanvas');
+        var buffer = document.createElement('canvas');
+
         img.onload = () => {
-            let temp_w = img.width;
-            let temp_h = img.height;
             canvas.width = img.width;
             canvas.height = img.height;
-            
+            buffer.width = img.width;
+            buffer.height = img.height;
+
             var ctx = canvas.getContext('2d');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var ctxb = buffer.getContext('2d');
+            ctxb.clearRect(0, 0, buffer.width, buffer.height);
 
             var w = this.state.horStitches;
             var h = (img.height/img.width)*this.state.horStitches;
             
-            canvas.width = w;
-            canvas.height = h;
-            toggleAliasing(ctx, true);
-            ctx.drawImage(img, 0, 0, w, h);
-            this.props.outputHandler({"pixelUrl" : canvas.toDataURL()});
-            
-            canvas.width = temp_w;
-            canvas.height = temp_h;
-            toggleAliasing(ctx, true);
-            ctx.drawImage(img, 0, 0, w, h);
+            buffer.width = w;
+            buffer.height = h;
+            toggleAliasing(ctxb, true);
+            ctxb.drawImage(img, 0, 0, w, h);
+            this.props.outputHandler({"pixelUrl" : buffer.toDataURL()});
 
             toggleAliasing(ctx, false);
-            ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
+            ctx.drawImage(buffer, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
         }        
     }
 
