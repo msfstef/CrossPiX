@@ -1,13 +1,13 @@
 {
   "main.css": "/cross_stitch_generator/static/css/main.af71dba1.chunk.css",
-  "main.js": "/cross_stitch_generator/static/js/main.392e423d.chunk.js",
-  "main.js.map": "/cross_stitch_generator/static/js/main.392e423d.chunk.js.map",
+  "main.js": "/cross_stitch_generator/static/js/main.e4d77a2b.chunk.js",
+  "main.js.map": "/cross_stitch_generator/static/js/main.e4d77a2b.chunk.js.map",
   "static/js/1.347f6079.chunk.js": "/cross_stitch_generator/static/js/1.347f6079.chunk.js",
   "static/js/1.347f6079.chunk.js.map": "/cross_stitch_generator/static/js/1.347f6079.chunk.js.map",
   "runtime~main.js": "/cross_stitch_generator/static/js/runtime~main.a64a8c8d.js",
   "runtime~main.js.map": "/cross_stitch_generator/static/js/runtime~main.a64a8c8d.js.map",
   "static/css/main.af71dba1.chunk.css.map": "/cross_stitch_generator/static/css/main.af71dba1.chunk.css.map",
   "index.html": "/cross_stitch_generator/index.html",
-  "precache-manifest.87a8d5b031308b187ab6f22726e53978.js": "/cross_stitch_generator/precache-manifest.87a8d5b031308b187ab6f22726e53978.js",
+  "precache-manifest.a6f3cd68e7b0ca4d25381c5e79628c9f.js": "/cross_stitch_generator/precache-manifest.a6f3cd68e7b0ca4d25381c5e79628c9f.js",
   "service-worker.js": "/cross_stitch_generator/service-worker.js"
 }
