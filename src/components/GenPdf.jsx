@@ -22,7 +22,9 @@ class GenPdf extends Component {
         var pattern = new Image();
         pattern.src = this.props.fileUrl;
         pattern.onload = () => {
-            var imagePieces = splitImage(pattern, noOfStitches, this.props.stitchSize)
+            var pieces = splitImage(pattern, noOfStitches, this.props.stitchSize)
+            var imagePieces = pieces[0];
+            var imageIdx = pieces[1];
             html2canvas(paletteTable, {logging: false}).then(
                 function(canvas) {
                     paletteImage = canvas.toDataURL("image/png");
@@ -34,6 +36,15 @@ class GenPdf extends Component {
                     }
     
                     for (let i = 0; i < imagePieces.length; i++) {
+                        if (i > 0) {
+                            pdf.addImage(
+                                imageIdx[i],
+                                'PNG',
+                                margins.left + (tableWidth - height/4)/2, 
+                                (3/4)*height + margins.top - spacing/2,
+                                height/4,
+                                height/4)
+                        }
                         pdf.addImage(
                             paletteImage,
                             'PNG',
@@ -49,7 +60,13 @@ class GenPdf extends Component {
                             margins.top + spacing/2,
                             height - spacing,
                             height - spacing)
-    
+
+                        if (i === 0 && 
+                            margins.top + spacing/2 + tableHeight > 
+                            (3/4)*height + margins.top - spacing) {
+                            tableHeight = (3/4)*height - 2*spacing;
+                        }
+
                         if (i !== imagePieces.length - 1) {
                             pdf.addPage('a4', 'landscape')
                         }
@@ -163,5 +180,34 @@ var splitImage = (img, noOfStitches, stitchSize) => {
     }
     pieces[0] = canvasWhole.toDataURL();
 
-    return pieces;
+    var pieces_idx = new Array(cols*rows+1)
+    for(let i = 0; i < cols; i++) {
+        for(let j = 0; j < rows; j++) {
+            let canvas = document.createElement('canvas');
+            canvas.width = canvasWhole.width;
+            canvas.height = canvasWhole.height;
+            let ctx = canvas.getContext('2d');
+            ctx.drawImage(canvasWhole, 0, 0)
+            ctx.fillStyle = 'rgba(0,0,0,0.5)';
+            ctx.fillRect(xStart, 
+                        yStart, 
+                        cols*wholeSize, rows*wholeSize)
+            ctx.fillStyle = 'rgba(255,255,255,.3)';
+            ctx.fillRect(xStart + i*wholeSize, 
+                        yStart + j*wholeSize, 
+                        wholeSize, wholeSize)
+            
+            if (xStart > lineWidth/2) {
+                ctx.clearRect(xStart + (img.width/img.height)*size, 0, 2*size, 2*size)
+                ctx.clearRect(0, yStart + size, 2*size, 2*size)
+            } else {
+                ctx.clearRect(0, yStart + (img.height/img.width)*size, 2*size, 2*size)
+                ctx.clearRect(xStart + size, 0, 2*size, 2*size)
+            }
+
+            pieces_idx[i*rows + j + 1] = canvas.toDataURL();
+        }
+    }
+
+    return [pieces, pieces_idx];
 }
