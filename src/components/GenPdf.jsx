@@ -77,27 +77,28 @@ var splitImage = (img, noOfStitches, stitchSize) => {
     let size = stitchSize * noOfStitches
     var cols = Math.ceil(img.width/size);
     var rows = Math.ceil(img.height/size);
+    var lineWidth = 5;
     
     var pieces = new Array(cols*rows+1)
 
     var canvasWhole = document.createElement('canvas');
-    canvasWhole.width = size;
-    canvasWhole.height = size;
+    canvasWhole.width = size + 2*lineWidth;
+    canvasWhole.height = size + 2*lineWidth;
     var ctxWhole = canvasWhole.getContext('2d');
-    var xStart = 0;
-    var yStart = 0;
+    var xStart = lineWidth;
+    var yStart = lineWidth;
     var wholeSize = 0;
 
     if (img.height > img.width) {
-        xStart = (size/2) - ((img.width/img.height)*size)/2;
-        yStart = 0;
+        xStart += (size/2) - ((img.width/img.height)*size)/2;
+        yStart += 0;
         wholeSize = (size/img.height)*size;
         ctxWhole.drawImage(img, 0, 0, img.width, img.height,  
                             xStart, yStart, 
                             (img.width/img.height)*size, size);
     } else {
-        xStart = 0;
-        yStart = (size/2) - ((img.height/img.width)*size)/2;
+        xStart += 0;
+        yStart += (size/2) - ((img.height/img.width)*size)/2;
         wholeSize = (size/img.width)*size;
         ctxWhole.drawImage(img, 0, 0, img.width, img.height, 
                             xStart, yStart, 
@@ -106,7 +107,7 @@ var splitImage = (img, noOfStitches, stitchSize) => {
 
     for(var i = 0; i < cols; i++) {
         for(var j = 0; j < rows; j++) {
-            ctxWhole.lineWidth = 5;
+            ctxWhole.lineWidth = lineWidth;
             ctxWhole.strokeStyle = "#ff0000"
             ctxWhole.strokeRect(xStart + i*wholeSize, yStart + j*wholeSize, 
                                 wholeSize, wholeSize)
@@ -121,19 +122,24 @@ var splitImage = (img, noOfStitches, stitchSize) => {
         }
     }
 
-    if (xStart > 0) {
-        ctxWhole.clearRect(xStart + (img.width/img.height)*size, 0, size, size)
+    xStart -= lineWidth/2;
+    yStart -= lineWidth/2;
+
+    if (xStart > lineWidth/2) {
+        ctxWhole.clearRect(xStart + (img.width/img.height)*size, 0, 2*size, 2*size)
+        ctxWhole.clearRect(0, yStart + size, 2*size, 2*size)
         ctxWhole.beginPath(); 
-        ctxWhole.moveTo(xStart, size);
-        ctxWhole.lineTo(xStart + (img.width/img.height)*size, size)
-        ctxWhole.lineTo(xStart + (img.width/img.height)*size, 0)
+        ctxWhole.moveTo(xStart, yStart + size);
+        ctxWhole.lineTo(xStart + (img.width/img.height)*size, yStart + size)
+        ctxWhole.lineTo(xStart + (img.width/img.height)*size, yStart)
         ctxWhole.stroke();
     } else {
-        ctxWhole.clearRect(0, yStart + (img.height/img.width)*size, size, size)
+        ctxWhole.clearRect(0, yStart + (img.height/img.width)*size, 2*size, 2*size)
+        ctxWhole.clearRect(xStart + size, 0, 2*size, 2*size)
         ctxWhole.beginPath(); 
-        ctxWhole.moveTo(size, yStart);
-        ctxWhole.lineTo(size, yStart + (img.height/img.width)*size)
-        ctxWhole.lineTo(0, yStart + (img.height/img.width)*size)
+        ctxWhole.moveTo(xStart + size, yStart);
+        ctxWhole.lineTo(xStart + size, yStart + (img.height/img.width)*size)
+        ctxWhole.lineTo(xStart, yStart + (img.height/img.width)*size)
         ctxWhole.stroke();
     }
     pieces[0] = canvasWhole.toDataURL();
