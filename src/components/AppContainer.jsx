@@ -13,6 +13,7 @@ class AppContainer extends Component {
         width: 0,
         proportion: 0,
         palette: {},
+        stitchSize: 1,
         fileUrl : '',
         preEditUrl : '',
         pixelUrl : '',
@@ -48,7 +49,8 @@ class AppContainer extends Component {
                 <PatternMaker fileUrl = {this.state.colorUrl} 
                             palette = {this.state.palette}
                             outputHandler = {this.outputHandler} />
-                <GenPdf fileUrl = {this.state.patternUrl} />
+                <GenPdf fileUrl = {this.state.patternUrl}
+                        stitchSize = {this.state.stitchSize} />
                 
             </div>
         );

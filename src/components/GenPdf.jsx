@@ -2,33 +2,32 @@ import React, { Component } from 'react';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
-class GenPdf extends Component {
-
-    
+class GenPdf extends Component {    
     genPdf = () => {
         var pdf = new jsPDF('l','px','a4');
+        let a4prop = Math.sqrt(2);
+        let spacing = 10;
         var margins = {
-            top: 20,
-            bottom: 20,
-            left: 25,
-            right: 25
+            top: 15,
+            bottom: 15,
+            left: a4prop*15,
+            right: a4prop*15
         }
         var width = pdf.internal.pageSize.getWidth() - margins.left - margins.right;    
         var height = pdf.internal.pageSize.getHeight() - margins.top - margins.bottom;
-        var imageSize = 720;
-        console.log(width)
+        var noOfStitches = 30;
 
         var paletteTable = document.getElementsByClassName("paletteTable")[0]
         var paletteImage = "";
         var pattern = new Image();
         pattern.src = this.props.fileUrl;
         pattern.onload = () => {
-            var imagePieces = splitImage(pattern, imageSize)
-            html2canvas(paletteTable).then(
+            var imagePieces = splitImage(pattern, noOfStitches, this.props.stitchSize)
+            html2canvas(paletteTable, {logging: false}).then(
                 function(canvas) {
                     paletteImage = canvas.toDataURL("image/png");
     
-                    var tableWidth = width/4;
+                    var tableWidth = (width-height);
                     var tableHeight = (canvas.height/canvas.width)*tableWidth;
                     if(tableHeight > height) {
                         tableHeight = height;
@@ -46,8 +45,10 @@ class GenPdf extends Component {
                         pdf.addImage(
                             imagePieces[i],
                             'PNG',
-                            2*margins.left + tableWidth,
-                            margins.top)
+                            margins.left + tableWidth + spacing,
+                            margins.top + spacing/2,
+                            height - spacing,
+                            height - spacing)
     
                         if (i !== imagePieces.length - 1) {
                             pdf.addPage('a4', 'landscape')
@@ -72,39 +73,70 @@ class GenPdf extends Component {
 export default GenPdf;
 
 
-var splitImage = (img, size) => {
-    var cols = Math.ceil(img.width/size)
-    var rows = Math.ceil(img.height/size)
+var splitImage = (img, noOfStitches, stitchSize) => {
+    let size = stitchSize * noOfStitches
+    var cols = Math.ceil(img.width/size);
+    var rows = Math.ceil(img.height/size);
     
-    var pieces = []
+    var pieces = new Array(cols*rows+1)
 
-    var canvas = document.createElement('canvas');
-    canvas.width = size;
-    canvas.height = size;
-    var ctx = canvas.getContext('2d');
+    var canvasWhole = document.createElement('canvas');
+    canvasWhole.width = size;
+    canvasWhole.height = size;
+    var ctxWhole = canvasWhole.getContext('2d');
+    var xStart = 0;
+    var yStart = 0;
+    var wholeSize = 0;
 
     if (img.height > img.width) {
-        ctx.drawImage(img, 0, 0, img.width, img.height,  
-                            (size/2) - ((img.width/img.height)*size)/2, 0, 
+        xStart = (size/2) - ((img.width/img.height)*size)/2;
+        yStart = 0;
+        wholeSize = (size/img.height)*size;
+        ctxWhole.drawImage(img, 0, 0, img.width, img.height,  
+                            xStart, yStart, 
                             (img.width/img.height)*size, size);
     } else {
-        ctx.drawImage(img, 0, 0, img.width, img.height, 
-                            0, (size/2) - ((img.height/img.width)*size)/2, 
+        xStart = 0;
+        yStart = (size/2) - ((img.height/img.width)*size)/2;
+        wholeSize = (size/img.width)*size;
+        ctxWhole.drawImage(img, 0, 0, img.width, img.height, 
+                            xStart, yStart, 
                             size, (img.height/img.width)*size);
     }
 
-    pieces.push(canvas.toDataURL());
-
     for(var i = 0; i < cols; i++) {
         for(var j = 0; j < rows; j++) {
-            canvas = document.createElement('canvas');
+            ctxWhole.lineWidth = 5;
+            ctxWhole.strokeStyle = "#ff0000"
+            ctxWhole.strokeRect(xStart + i*wholeSize, yStart + j*wholeSize, 
+                                wholeSize, wholeSize)
+
+            let canvas = document.createElement('canvas');
             canvas.width = size;
             canvas.height = size;
-            ctx = canvas.getContext('2d');
+            let ctx = canvas.getContext('2d');
             ctx.drawImage(img, i*size, j*size, size, size, 
                             0, 0, canvas.width, canvas.height);
-            pieces.push(canvas.toDataURL());
+            pieces[i*rows + j + 1] = canvas.toDataURL();
         }
     }
+
+    if (xStart > 0) {
+        ctxWhole.clearRect(xStart + (img.width/img.height)*size, 0, size, size)
+        ctxWhole.beginPath(); 
+        ctxWhole.moveTo(xStart, size);
+        ctxWhole.lineTo(xStart + (img.width/img.height)*size, size)
+        ctxWhole.lineTo(xStart + (img.width/img.height)*size, 0)
+        ctxWhole.stroke();
+    } else {
+        ctxWhole.clearRect(0, yStart + (img.height/img.width)*size, size, size)
+        ctxWhole.beginPath(); 
+        ctxWhole.moveTo(size, yStart);
+        ctxWhole.lineTo(size, yStart + (img.height/img.width)*size)
+        ctxWhole.lineTo(0, yStart + (img.height/img.width)*size)
+        ctxWhole.stroke();
+    }
+    pieces[0] = canvasWhole.toDataURL();
+
     return pieces;
 }

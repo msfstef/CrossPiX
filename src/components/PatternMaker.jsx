@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import {toggleAliasing} from '../utilities/utilities';
 
 class PatternMaker extends Component {
+    state = {
+        scale : 40
+    }
+    
     onImgLoad () {
         var img = new Image();
         img.src = this.props.fileUrl;
+        let scale = this.state.scale;
 
-        
         img.onload = () => {
-            let scale = 40
-
             var canvas = document.getElementById('PatternMakerCanvas');
             var buffer = document.createElement('canvas');
             
@@ -67,7 +69,8 @@ class PatternMaker extends Component {
             }
 
             this.props.outputHandler({
-                "patternUrl": buffer.toDataURL()
+                "patternUrl": buffer.toDataURL(),
+                "stitchSize": scale
             })
 
             toggleAliasing(ctx, false);
