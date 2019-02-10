@@ -30,7 +30,7 @@ class GenPdf extends Component {
                     var tableWidth = (width-height);
                     var tableHeight = (canvas.height/canvas.width)*tableWidth;
                     if(tableHeight > height) {
-                        tableHeight = height;
+                        tableHeight = height - spacing;
                     }
     
                     for (let i = 0; i < imagePieces.length; i++) {
@@ -38,7 +38,7 @@ class GenPdf extends Component {
                             paletteImage,
                             'PNG',
                             margins.left, 
-                            margins.top,
+                            margins.top + spacing/2,
                             tableWidth,
                             tableHeight)
                         
@@ -113,11 +113,30 @@ var splitImage = (img, noOfStitches, stitchSize) => {
                                 wholeSize, wholeSize)
 
             let canvas = document.createElement('canvas');
-            canvas.width = size;
-            canvas.height = size;
+            canvas.width = size + stitchSize;
+            canvas.height = size + stitchSize;
             let ctx = canvas.getContext('2d');
+            ctx.strokeRect(stitchSize, 0, size, size)
+            for (let sq = 0; sq < noOfStitches**2; sq++) {
+                ctx.strokeRect(((sq%noOfStitches)+1)*stitchSize,
+                            Math.floor(sq/noOfStitches)*stitchSize,
+                                stitchSize,stitchSize)
+            }
             ctx.drawImage(img, i*size, j*size, size, size, 
-                            0, 0, canvas.width, canvas.height);
+                            stitchSize, 0, 
+                            size, size);
+
+            ctx.textAlign="center"; 
+            ctx.textBaseline = "middle";
+            ctx.font = "bold 20pt Courier";
+            for (let sq = 0; sq < noOfStitches; sq++) {
+                ctx.fillText(sq+1, 
+                    stitchSize/2, 
+                    (sq+1/2)*stitchSize);
+                ctx.fillText(sq+1, 
+                    (sq+1+1/2)*stitchSize, 
+                    size + stitchSize/2);
+            }
             pieces[i*rows + j + 1] = canvas.toDataURL();
         }
     }
