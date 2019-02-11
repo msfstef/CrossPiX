@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Slider from './Slider';
-import {toggleAliasing} from '../utilities/utilities';
+import {toggleAliasing, canvas_arrow} from '../utilities/utilities';
 
 
 class ImageContainer extends Component {
@@ -22,8 +22,9 @@ class ImageContainer extends Component {
         var buffer = document.createElement('canvas');
 
         img.onload = () => {
-            canvas.width = img.width;
-            canvas.height = img.height;
+            let margin = 15;
+            canvas.width = img.width + margin;
+            canvas.height = img.height + margin;
             buffer.width = img.width;
             buffer.height = img.height;
 
@@ -32,7 +33,7 @@ class ImageContainer extends Component {
             ctxb.clearRect(0, 0, buffer.width, buffer.height);
 
             var w = this.state.horStitches;
-            var h = (img.height/img.width)*this.state.horStitches;
+            var h = Math.ceil((img.height/img.width)*this.state.horStitches);
             
             buffer.width = w;
             buffer.height = h;
@@ -41,7 +42,38 @@ class ImageContainer extends Component {
             this.props.outputHandler({"pixelUrl" : buffer.toDataURL()});
 
             toggleAliasing(ctx, false);
-            ctx.drawImage(buffer, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
+            ctx.drawImage(buffer, 0, 0, w, h, 
+                        margin, 0, img.width, img.height);
+
+            ctx.textAlign="center"; 
+            ctx.textBaseline = "bottom";
+            ctx.font = "bold 10pt Courier";
+            canvas_arrow(ctx, margin/3, 
+                        margin/2, img.height + margin/2, 
+                        margin/2, 0);
+            let textSize = ctx.measureText(h).width;
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0,
+                        img.height/2-textSize/2,
+                        margin,
+                        textSize)
+            ctx.fillStyle = '#000000';
+            ctx.rotate(Math.PI/2);
+            ctx.fillText(h, img.height/2, 0);
+            ctx.rotate(-Math.PI/2);
+            canvas_arrow(ctx, margin/3, 
+                        margin/2, img.height + margin/2, 
+                        img.width + margin, img.height + margin/2);
+            
+            textSize = ctx.measureText(w).width;
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(margin+img.width/2-textSize/2,
+                        img.height,
+                        textSize,
+                        margin)
+            ctx.fillStyle = '#000000';
+            ctx.fillText(w, margin + img.width/2, img.height + margin);
+            ctx.fillRect(0, img.height, margin, margin);
         }        
     }
 
