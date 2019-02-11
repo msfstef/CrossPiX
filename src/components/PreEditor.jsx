@@ -11,18 +11,16 @@ class PreEditor extends Component {
         img.src = this.props.fileUrl;
 
         var canvas = document.getElementById('PreEditorCanvas');
-
         var ctx = canvas.getContext('2d');
-        
-        
 
         img.onload = () => {
             let proportion = img.height/img.width;
+            let container = document.getElementsByClassName("canvasContainer")[0];
             if (proportion < 1) {
-                canvas.width = 300;
+                canvas.width = container.offsetWidth;
                 canvas.height = canvas.width * proportion;
             } else {
-                canvas.height = 300;
+                canvas.height = container.offsetHeight;
                 canvas.width = canvas.height / proportion;
             }
 
@@ -30,9 +28,7 @@ class PreEditor extends Component {
             ctx.filter += "saturate("+this.state.saturation+"%) ";
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            var w = canvas.width;
-            var h = canvas.height;
-            ctx.drawImage(img, 0, 0, w, h);
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
             /* Make transparent pixels white */
             let imgc = ctx.getImageData(0, 0, canvas.width, canvas.height)
@@ -65,6 +61,10 @@ class PreEditor extends Component {
         }
     }
 
+    componentDidMount() {
+        window.addEventListener('resize', ()=>{this.onImgLoad()})
+    }
+
     handleSliderContrast = () => {
         this.setState({ "contrast" : document.getElementById("contrastSlider").value});
         this.onImgLoad();
@@ -78,18 +78,22 @@ class PreEditor extends Component {
     render() {
         return (
             <div className="picEditor">
-                <canvas className="picCanvas" id="PreEditorCanvas"></canvas>
-
-                <Slider name = "contrastSlider"
-                        min = "0"
-                        max = "200"
-                        handler = {this.handleSliderContrast}
-                        defaultValue = "100" />
-                <Slider name = "saturationSlider"
-                        min = "0"
-                        max = "200"
-                        handler = {this.handleSliderSaturation}
-                        defaultValue = "100" />
+                <div className="canvasContainer">
+                    <canvas className="picCanvas" id="PreEditorCanvas"></canvas>
+                </div>
+                
+                <div className="sliderContainer">
+                    <Slider name = "contrastSlider"
+                            min = "0"
+                            max = "200"
+                            handler = {this.handleSliderContrast}
+                            defaultValue = "100" />
+                    <Slider name = "saturationSlider"
+                            min = "0"
+                            max = "200"
+                            handler = {this.handleSliderSaturation}
+                            defaultValue = "100" />
+                </div>
 
             </div>
         );

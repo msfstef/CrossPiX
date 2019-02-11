@@ -141,20 +141,31 @@ class ColorMapper extends Component {
 
     render() {
         return (
-            <div className="picEditor">
-                <canvas className="picCanvas" id="ColorMapperCanvas"></canvas>
-                <Palette palette={this.state.palette} />
-                <input className="button" type="submit"
-                        value="Randomize Symbols"
-                        onClick={() => {
-                            shuffle(this.state.symbols);
-                            this.onImgLoad();
-                            }} />
-                <Slider name = "colorSlider" 
-                            min = "2"
-                            max = "50"
-                            handler = {this.handleSlider}
-                            defaultValue = {this.state.defaultColors} />
+            <div className="picEditor ColorMapper">
+                <div className="colorMapperEditor">
+                    <div className="canvasContainer">
+                        <canvas className="picCanvas" id="ColorMapperCanvas"></canvas>
+                    </div>
+                    <div className="sliderContainer">
+                        <Slider name = "colorSlider" 
+                                    min = "2"
+                                    max = "50"
+                                    handler = {this.handleSlider}
+                                    defaultValue = {this.state.defaultColors} />
+                    </div>
+                </div>
+
+                <div className="colorMapperPalette">
+                    <Palette palette={this.state.palette} />
+                    <input className="button" type="submit"
+                            value="Randomize Symbols"
+                            onClick={() => {
+                                shuffle(this.state.symbols);
+                                this.onImgLoad();
+                                }} />
+                </div>
+                
+                
                 
             </div>
         );
