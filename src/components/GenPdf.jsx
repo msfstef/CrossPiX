@@ -17,6 +17,16 @@ class GenPdf extends Component {
         var height = pdf.internal.pageSize.getHeight() - margins.top - margins.bottom;
         var noOfStitches = 30;
 
+        var borders = document.createElement("canvas");
+        borders.width = width + margins.left + margins.right;
+        borders.height = height + margins.top + margins.bottom;
+        var ctxbor = borders.getContext('2d');
+        ctxbor.strokeRect(margins.left/2, margins.top/2,
+                            width + +margins.left/2 + margins.right/2, 
+                            height + margins.top/2 + margins.bottom/2)
+        var bordersImg = borders.toDataURL("image/png");
+        
+
         var paletteTable = document.getElementsByClassName("paletteTable")[0]
         var paletteImage = "";
         var pattern = new Image();
@@ -36,6 +46,14 @@ class GenPdf extends Component {
                     }
     
                     for (let i = 0; i < imagePieces.length; i++) {
+                        pdf.addImage(
+                            bordersImg,
+                            'PNG',
+                            0, 
+                            0,
+                            width + margins.left + margins.right,
+                            height + margins.top + margins.bottom)
+
                         if (i > 0) {
                             pdf.addImage(
                                 imageIdx[i],
@@ -192,7 +210,7 @@ var splitImage = (img, noOfStitches, stitchSize) => {
             ctx.fillRect(xStart, 
                         yStart, 
                         cols*wholeSize, rows*wholeSize)
-            ctx.fillStyle = 'rgba(255,255,255,.3)';
+            ctx.fillStyle = 'rgba(255,255,255,.4)';
             ctx.fillRect(xStart + i*wholeSize, 
                         yStart + j*wholeSize, 
                         wholeSize, wholeSize)
