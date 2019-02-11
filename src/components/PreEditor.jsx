@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import Slider from './Slider';
 
 class PreEditor extends Component {
+    state = {
+        contrast: 100,
+        saturation: 100
+    }
     onImgLoad () {
         var img = new Image();
         img.src = this.props.fileUrl;
@@ -20,6 +25,9 @@ class PreEditor extends Component {
                 canvas.height = 300;
                 canvas.width = canvas.height / proportion;
             }
+
+            ctx.filter = "contrast("+this.state.contrast+"%) ";
+            ctx.filter += "saturate("+this.state.saturation+"%) ";
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             var w = canvas.width;
@@ -57,10 +65,32 @@ class PreEditor extends Component {
         }
     }
 
+    handleSliderContrast = () => {
+        this.setState({ "contrast" : document.getElementById("contrastSlider").value});
+        this.onImgLoad();
+    }
+
+    handleSliderSaturation = () => {
+        this.setState({ "saturation" : document.getElementById("saturationSlider").value});
+        this.onImgLoad();
+    }
+
     render() {
         return (
             <div className="picEditor">
-                <canvas className="picCanvas" id="PreEditorCanvas"></canvas>    
+                <canvas className="picCanvas" id="PreEditorCanvas"></canvas>
+
+                <Slider name = "contrastSlider"
+                        min = "0"
+                        max = "200"
+                        handler = {this.handleSliderContrast}
+                        defaultValue = "100" />
+                <Slider name = "saturationSlider"
+                        min = "0"
+                        max = "200"
+                        handler = {this.handleSliderSaturation}
+                        defaultValue = "100" />
+
             </div>
         );
     }
