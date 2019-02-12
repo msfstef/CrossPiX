@@ -4,6 +4,7 @@ import Pixelator from './Pixelator';
 import ColorMapper from './ColorMapper';
 import PatternMaker from './PatternMaker';
 import GenPdf from './GenPdf';
+import ImgUploader from './ImgUploader';
 import './AppContainer.css';
 
 
@@ -21,10 +22,17 @@ class AppContainer extends Component {
         patternUrl: ''
     }
 
-    handleFile = (files) => {
+    handleSelectFile = (files) => {
         var file = document.getElementById('img_upload').files[0];
         if (file) {
             this.setState({ fileUrl : window.URL.createObjectURL(file) });
+        }
+    }
+
+    handleDropFile = (files) => {
+        console.log(files)
+        if (files) {
+            this.setState({ fileUrl : window.URL.createObjectURL(files[0])});
         }
     }
 
@@ -34,9 +42,13 @@ class AppContainer extends Component {
 
     render() {
         return (
-            <div id="AppContainer">
-                <input type="file" id="img_upload" accept="image/*" 
-                    onChange= {()=>{this.handleFile()}} />
+            <div id="AppContainer" >
+            <ImgUploader fileUrl={this.state.fileUrl} 
+                            handleSelectFile={this.handleSelectFile} 
+                            handleDropFile={this.handleDropFile} />
+            <div id="EditorContainer" 
+                className={this.state.fileUrl?"":"hide"}>
+                
                 <PreEditor fileUrl = {this.state.fileUrl}
                             outputHandler = {this.outputHandler}  />
                 <Pixelator fileUrl = {this.state.preEditUrl} 
@@ -52,6 +64,7 @@ class AppContainer extends Component {
                 <GenPdf fileUrl = {this.state.patternUrl}
                         stitchSize = {this.state.stitchSize} />
                 
+            </div>
             </div>
         );
     }

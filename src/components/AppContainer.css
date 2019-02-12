@@ -1,9 +1,56 @@
-#AppContainer {
+#EditorContainer {
     display: flex;
     width: 100vw;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#EditorContainer.hide {
+    display: none;
+}
+
+#ImgUploader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background: #44a1a0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+#ImgUploader.hide {
+    display: none;
+}
+
+.dropBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 40vmin;
+    height: 40vmin;
+
+    font-size : 3vmin;
+    font-weight: bold;
+    font-family: "Helvetica";
+
+    background-image: linear-gradient(#ffac81, #f2ccc3);
+    box-shadow: 0 0 20px rgb(39, 39, 39);
+    border: 5px solid black;
+    border-radius: 15%;
+    transition: box-shadow 0.1s, width 0.1s, 
+                height 0.1s, font-size 0.1s;
+}
+
+.dropBox.active,
+.dropBox:hover {
+    box-shadow: 0 0 40px #d0f4ea;
+    width: 45vmin;
+    height: 45vmin;
+    font-size : 3.5vmin;
 }
 
 .picEditor {
@@ -15,17 +62,19 @@
     height: 40vw;
     max-height: 40vh;
     margin: auto;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding: 3%;
 
     box-shadow: 3px 3px 20px black;
     border-radius: 40px;
-    background: #f2ccc3
+    background-image: linear-gradient(to left, #ffac81, #f2ccc3);
     ;
 }
 
 .picEditor.Pattern {
-    height: 50vmax;
+    height: 70vmax;
+    max-height: 70vmax;
 }
 
 
@@ -42,7 +91,7 @@
     margin-bottom: auto;
     border: solid 2px rgb(0, 0, 0);
     outline: dashed 1px rgba(0, 0, 0, 0.6);
-    box-shadow: 5px 5px 5px grey;
+    box-shadow: 3px 3px 20px black;
 }
 
 .picCanvas.Pattern {
