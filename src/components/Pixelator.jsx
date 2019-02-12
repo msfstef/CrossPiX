@@ -43,11 +43,7 @@ class ImageContainer extends Component {
             buffer.height = h;
             toggleAliasing(ctxb, true);
             ctxb.drawImage(img, 0, 0, w, h);
-            this.props.outputHandler({
-                "pixelUrl" : buffer.toDataURL(),
-                "width" : img.width,
-                "height" : img.height
-            });
+            this.props.outputHandler({"pixelUrl" : buffer.toDataURL()});
 
             toggleAliasing(ctxb2, false);
             ctxb2.drawImage(buffer, 0, 0, w, h, 

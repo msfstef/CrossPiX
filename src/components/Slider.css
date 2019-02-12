@@ -14,10 +14,10 @@
 .Slider input{
   
   -webkit-appearance: none;
-  width: calc(100% - (63px));
+  width: 100%;
   height: 10px;
   border-radius: 5px;
-  background: #d7dcdf;
+  background: #ebfffa;
   outline: none;
   padding: 0;
   margin: 0;
@@ -28,7 +28,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #2c3e50;
+  background: #214e4e;
   cursor: pointer;
   transition: background 0.15s ease-in-out;
 }
@@ -43,7 +43,7 @@
   height: 20px;
   border: 0;
   border-radius: 50%;
-  background: #2c3e50;
+  background: #214e4e;
   cursor: pointer;
   transition: background 0.15s ease-in-out;
 }
@@ -61,18 +61,19 @@
 .SliderValue {
   display: inline-block;
   position: relative;
-  width: 20px;
+  width: 25px;
   color: #fff;
-  line-height: 60px;
+  line-height: 30px;
   text-align: center;
   border-radius: 3px;
-  background: #2c3e50;
-  padding: 5px 10px;
+  background: #214e4e;
+  padding: 10px 10px;
   margin-left: 10px;
 }
 
 .SliderText {
   display: block;
+  width: 25px;
   -webkit-appearance: none; 
   -webkit-transform:rotate(90deg);
   -moz-transform:rotate(90deg); 
@@ -89,7 +90,7 @@
   width: 0;
   height: 0;
   border-top: 7px solid transparent;
-  border-right: 7px solid #2c3e50;
+  border-right: 7px solid #214e4e;
   border-bottom: 7px solid transparent;
   content: '';
 }

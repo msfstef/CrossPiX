@@ -158,7 +158,7 @@ class ColorMapper extends Component {
                 <div className="colorMapperPalette">
                     <Palette palette={this.state.palette} />
                     <input className="button" type="submit"
-                            value="Randomize Symbols"
+                            value="Change Symbols ↻"
                             onClick={() => {
                                 shuffle(this.state.symbols);
                                 this.onImgLoad();

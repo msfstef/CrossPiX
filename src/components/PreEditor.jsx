@@ -19,9 +19,17 @@ class PreEditor extends Component {
             if (proportion < 1) {
                 canvas.width = container.offsetWidth;
                 canvas.height = canvas.width * proportion;
+                if (canvas.height > container.offsetHeight) {
+                    canvas.height = container.offsetHeight;
+                    canvas.width = canvas.height / proportion;
+                }
             } else {
                 canvas.height = container.offsetHeight;
                 canvas.width = canvas.height / proportion;
+                if (canvas.width > container.offsetWidth) {
+                    canvas.width = container.offsetWidth;
+                    canvas.height = canvas.width * proportion;
+                }
             }
 
             ctx.filter = "contrast("+this.state.contrast+"%) ";
@@ -46,7 +54,11 @@ class PreEditor extends Component {
 
             ctx.putImageData(imgc, 0, 0)
 
-            this.props.outputHandler({"preEditUrl" : canvas.toDataURL()});
+            this.props.outputHandler({
+                "preEditUrl" : canvas.toDataURL(),
+                "width" : canvas.width,
+                "height" : canvas.height
+            });
         }
 
 
@@ -55,6 +67,12 @@ class PreEditor extends Component {
     componentDidUpdate(prevProps) {
         if(this.props.fileUrl !== prevProps.fileUrl)
         {   
+            document.getElementById("contrastSlider").value = 100;
+            document.getElementById("saturationSlider").value = 100;
+            this.setState({ 
+                contrast: 100,
+                saturation: 100
+            });
             this.onImgLoad()
         }
     }

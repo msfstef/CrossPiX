@@ -1,28 +1,51 @@
 .Palette {
     overflow-y: auto;
     max-height: 80%;
-    max-width: 50%;
 }
 
 
 .paletteTable {
     table-layout: auto;
     border-collapse: collapse;
-    width: 100%;
     white-space:nowrap;
+    border: 2px black solid;
 }
 
 .paletteTable th, td{
     text-align: left;
-    padding-right: 10px;
-    padding-bottom: 5px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border: 1px solid black;
 }
 
 
 .paletteTable th{
+    background: rgb(190, 190, 190);
 }
 
-.paletteTable td{
+.paletteTable tr:nth-child(odd){
+    background: rgb(255, 255, 255);
+}
+
+.paletteTable tr:nth-child(even){
+    background: rgb(241, 241, 241);
+}
+
+.paletteTable thead {
+    background: #D3D3D3;
+    background: -moz-linear-gradient(top, #dedede 0%, #d7d7d7 66%, #D3D3D3 100%);
+    background: -webkit-linear-gradient(top, #dedede 0%, #d7d7d7 66%, #D3D3D3 100%);
+    background: linear-gradient(to bottom, #dedede 0%, #d7d7d7 66%, #D3D3D3 100%);
+    border: 2px solid black;
+}
+
+.paletteTable thead th {
+    font-size: 15px;
+    font-weight: bold;
+    color: #000000;
+    border-left: 1px solid #000000;
 }
 
 .paletteBox {

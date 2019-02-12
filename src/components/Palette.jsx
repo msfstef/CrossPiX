@@ -44,8 +44,8 @@ class Palette extends Component {
                     <tr>
                         <th>Color</th>
                         <th>Name</th>
-                        <th>DMC</th>
-                        <th>Count</th>
+                        <th style={{textAlign: "right"}}>DMC</th>
+                        <th style={{textAlign: "right"}}>Count</th>
                     </tr>
                 </thead>
                 <tbody>
