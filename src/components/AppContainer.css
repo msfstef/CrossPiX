@@ -36,6 +36,9 @@
 
 .picCanvas {
     margin: auto;
+    height: 100%;
+    padding-right: 100%;
+
 }
 
 .picCanvas.Pattern {
@@ -50,18 +53,13 @@
     max-height: 80vh;
 }
 
-.colorMapperEditor {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 50%;
-}
-
+.colorMapperEditor,
 .colorMapperPalette {
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 50%;
+    margin: 1%;
 }
 
 .Palette {

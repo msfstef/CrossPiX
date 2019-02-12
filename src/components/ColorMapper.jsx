@@ -35,7 +35,7 @@ class ColorMapper extends Component {
 
         img_qt.onload = () => {
             canvas.width = this.props.initWidth;
-            canvas.height = canvas.width*this.props.proportion;
+            canvas.height = this.props.initHeight;
             buffer.width = img_qt.width;
             buffer.height = img_qt.height
 

@@ -46,9 +46,7 @@ class PreEditor extends Component {
 
             ctx.putImageData(imgc, 0, 0)
 
-            this.props.outputHandler({"preEditUrl" : canvas.toDataURL(),
-                                    "width" : canvas.width,
-                                    "proportion" : proportion});
+            this.props.outputHandler({"preEditUrl" : canvas.toDataURL()});
         }
 
 

@@ -43,17 +43,21 @@ class ImageContainer extends Component {
             buffer.height = h;
             toggleAliasing(ctxb, true);
             ctxb.drawImage(img, 0, 0, w, h);
-            this.props.outputHandler({"pixelUrl" : buffer.toDataURL()});
+            this.props.outputHandler({
+                "pixelUrl" : buffer.toDataURL(),
+                "width" : img.width,
+                "height" : img.height
+            });
 
             toggleAliasing(ctxb2, false);
             ctxb2.drawImage(buffer, 0, 0, w, h, 
                         margin, 0, img.width, img.height);
             
-            ctxb2.lineWidth = 2;
+            ctxb2.lineWidth = 1.5;
 
             ctxb2.textAlign="center"; 
             ctxb2.textBaseline = "bottom";
-            ctxb2.font = "bold 10pt Courier";
+            ctxb2.font = "bold 10pt Arial";
             canvas_arrow(ctxb2, margin/3, 
                         margin/2, img.height + margin/2, 
                         margin/2, 0);
