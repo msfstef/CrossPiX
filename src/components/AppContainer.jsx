@@ -22,6 +22,14 @@ class AppContainer extends Component {
         patternUrl: ''
     }
 
+    componentDidUpdate(prevProps){
+        if (prevProps.newImage !== this.props.newImage) {
+            this.setState({
+                fileUrl: ''
+            })
+        }
+    }
+
     handleSelectFile = (files) => {
         var file = document.getElementById('img_upload').files[0];
         if (file) {
@@ -30,7 +38,6 @@ class AppContainer extends Component {
     }
 
     handleDropFile = (files) => {
-        console.log(files)
         if (files) {
             this.setState({ fileUrl : window.URL.createObjectURL(files[0])});
         }

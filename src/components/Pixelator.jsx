@@ -35,6 +35,7 @@ class ImageContainer extends Component {
             var ctxb = buffer.getContext('2d');
             var ctxb2 = buffer2.getContext('2d');
             ctxb.clearRect(0, 0, buffer.width, buffer.height);
+            ctxb2.fillRect(margin, 0,img.width, img.height);
 
             var w = this.state.horStitches;
             var h = Math.ceil((img.height/img.width)*this.state.horStitches);
@@ -43,6 +44,8 @@ class ImageContainer extends Component {
             buffer.height = h;
             toggleAliasing(ctxb, true);
             ctxb.drawImage(img, 0, 0, w, h);
+            
+            
             this.props.outputHandler({"pixelUrl" : buffer.toDataURL()});
 
             toggleAliasing(ctxb2, false);
