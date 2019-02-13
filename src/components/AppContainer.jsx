@@ -91,7 +91,21 @@ class AppContainer extends Component {
                 <PatternMaker fileUrl = {this.state.colorUrl} 
                             palette = {this.state.palette}
                             outputHandler = {this.outputHandler} />
-                </div>                
+                </div>
+                <div id="Footer">
+                <p>
+                    Site created by <a className="website"
+                        target="_blank" rel="noopener noreferrer"
+                        href="https://msfstef.github.io/">
+                        Stefanos Mousafeiris
+                    </a> on Feb 2019.
+                </p>
+                <a className="paypal"
+                    target="_blank" rel="noopener noreferrer"
+                    href="https://paypal.me/msfstef">
+                    Buy me coffee?
+                </a>
+                </div>             
             </div>
             </div>
         );

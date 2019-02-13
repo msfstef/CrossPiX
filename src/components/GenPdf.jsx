@@ -9,10 +9,6 @@ class GenPdf extends Component {
 
     genPdf = () => {
         this.setState({loading: true});
-        let button = document.getElementById("GenPdf");
-        //button.style.width = button.offsetHeight + "pt";
-        //button.style.height = button.offsetHeight + "pt";
-
 
         var pdf = new jsPDF('l','px','a4');
         let a4prop = Math.sqrt(2);
@@ -62,7 +58,8 @@ class GenPdf extends Component {
                             0, 
                             0,
                             width + margins.left + margins.right,
-                            height + margins.top + margins.bottom)
+                            height + margins.top + margins.bottom,
+                            '','FAST')
 
                         if (i > 0) {
                             pdf.addImage(
@@ -71,7 +68,8 @@ class GenPdf extends Component {
                                 margins.left + (tableWidth - height/4)/2, 
                                 (3/4)*height + margins.top - spacing/2,
                                 height/4,
-                                height/4)
+                                height/4,
+                                '','FAST')
                         }
                         pdf.addImage(
                             paletteImage,
@@ -79,7 +77,8 @@ class GenPdf extends Component {
                             margins.left, 
                             margins.top + spacing/2,
                             tableWidth,
-                            tableHeight)
+                            tableHeight,
+                            '','FAST')
                         
                         pdf.addImage(
                             imagePieces[i],
@@ -87,7 +86,8 @@ class GenPdf extends Component {
                             margins.left + tableWidth + spacing,
                             margins.top + spacing/2,
                             height - spacing,
-                            height - spacing)
+                            height - spacing,
+                            '','FAST')
 
                         if (i === 0 && 
                             margins.top + spacing/2 + tableHeight > 
