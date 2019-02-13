@@ -97,7 +97,7 @@ class GenPdf extends Component {
 
     render() {
         return (
-            <div>
+            <div id="GenPdf">
                 <input type="submit" value="Generate PDF"
                         onClick = {()=>{this.genPdf();}} />
             </div>

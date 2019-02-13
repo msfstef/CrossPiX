@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {toggleAliasing} from '../utilities/utilities';
+import GenPdf from './GenPdf';
 
 class PatternMaker extends Component {
     state = {
@@ -67,9 +68,14 @@ class PatternMaker extends Component {
                                     j + scale/2)
                 }
             }
+            
+            this.setState({
+                "patternUrl": buffer.toDataURL(),
+                "stitchSize": scale
+            })
 
             this.props.outputHandler({
-                "patternUrl": buffer.toDataURL(),
+                "patternUrl": this.state.patternUrl,
                 "stitchSize": scale
             })
 
@@ -91,6 +97,8 @@ class PatternMaker extends Component {
         return (
             <div className="picEditor Pattern">
                 <canvas className="picCanvas Pattern" id="PatternMakerCanvas"></canvas>
+                <GenPdf fileUrl = {this.state.patternUrl}
+                        stitchSize = {this.state.scale} />
             </div>
         );
     }

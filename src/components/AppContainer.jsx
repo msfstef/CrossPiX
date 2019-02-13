@@ -3,7 +3,7 @@ import PreEditor from './PreEditor';
 import Pixelator from './Pixelator';
 import ColorMapper from './ColorMapper';
 import PatternMaker from './PatternMaker';
-import GenPdf from './GenPdf';
+
 import ImgUploader from './ImgUploader';
 import './AppContainer.css';
 
@@ -91,10 +91,7 @@ class AppContainer extends Component {
                 <PatternMaker fileUrl = {this.state.colorUrl} 
                             palette = {this.state.palette}
                             outputHandler = {this.outputHandler} />
-                </div>
-                <GenPdf fileUrl = {this.state.patternUrl}
-                        stitchSize = {this.state.stitchSize} />
-                
+                </div>                
             </div>
             </div>
         );
