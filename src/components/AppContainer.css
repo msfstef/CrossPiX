@@ -121,10 +121,11 @@
     background-color: #abc4ab;
     border: 2px solid black;
     border-radius: 40px;
-    width: 50%;
-    height: 70%;
+    width: 40vmin;
+    max-width: 40vmax;
+    height: 60%;
     color: black;
-    font-size: 3vw;
+    font-size: 2vmax;
     font-weight: bold;
     font-family: Helvetica;
     text-align: center;
@@ -138,14 +139,29 @@
 #GenPdf input:hover {
     background-color: rgb(183, 209, 183);
     box-shadow: 0 5px 20px #ffffff8c;
-    font-size: 3.2vw;
+    font-size: 2.2vw;
 }
 
 #GenPdf input:active {
     background-color: rgb(183, 209, 183);
     box-shadow: 0 5px 40px #ffffff;
-    font-size: 3.2vw;
+    font-size: 2.2vw;
 }
+
+@keyframes spin { 
+    100% { -webkit-transform: rotate(360deg);         
+            transform:rotate(360deg); } 
+}
+
+#GenPdf.loading input {
+    width: 10vmin;
+    height: 10vmin;
+    font-size: 2.2vw;
+    border-radius: 50%;
+    box-shadow: 0 0px 40px #ffffff;
+    animation:spin 1s linear infinite;
+}
+
 
 .canvasContainer {
     display: flex;

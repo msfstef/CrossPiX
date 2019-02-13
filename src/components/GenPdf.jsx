@@ -2,8 +2,18 @@ import React, { Component } from 'react';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
-class GenPdf extends Component {    
+class GenPdf extends Component {
+    state = {
+        loading: false
+    } 
+
     genPdf = () => {
+        this.setState({loading: true});
+        let button = document.getElementById("GenPdf");
+        //button.style.width = button.offsetHeight + "pt";
+        //button.style.height = button.offsetHeight + "pt";
+
+
         var pdf = new jsPDF('l','px','a4');
         let a4prop = Math.sqrt(2);
         let spacing = 10;
@@ -36,7 +46,7 @@ class GenPdf extends Component {
             var imagePieces = pieces[0];
             var imageIdx = pieces[1];
             html2canvas(paletteTable, {logging: false}).then(
-                function(canvas) {
+                (canvas) => {
                     paletteImage = canvas.toDataURL("image/png");
     
                     var tableWidth = (width-height);
@@ -89,7 +99,8 @@ class GenPdf extends Component {
                             pdf.addPage('a4', 'landscape')
                         }
                     }
-                    pdf.save('stitch_pattern.pdf')
+                    pdf.save('stitch_pattern.pdf');
+                    this.setState({loading: false});
                 }
             )
         }       
@@ -97,8 +108,9 @@ class GenPdf extends Component {
 
     render() {
         return (
-            <div id="GenPdf">
-                <input type="submit" value="Generate PDF"
+            <div id="GenPdf" className={this.state.loading?"loading":""}>
+                <input type="submit" 
+                        value={this.state.loading?"↻":"Generate PDF"}
                         onClick = {()=>{this.genPdf();}} />
             </div>
         );
