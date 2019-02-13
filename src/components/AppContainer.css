@@ -187,6 +187,10 @@
 }
 
 .Palette {
+    padding: 10px;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    background-image: linear-gradient(to right, rgba(171,196,171,0.4), rgba(120,132,117,0.5))
 
 }
 
@@ -234,24 +238,26 @@
 .button {
     margin-left: 50px;
     white-space: normal;
-    background-color: rgb(49, 49, 49); /* Green */
+    background-color: #abc4ab;
     border: none;
     border-radius:50%;
     width: 6em;
     height: 6em;
-    color: white;
+    color: black;
     padding: 1em;
     font-size: 1em;
+    font-weight: bold;
+    font-family: Helvetica;
     text-align: center;
     text-decoration: none;
     box-shadow: 0 5px #999;
     display: inline-block;
 }
 
-.button:hover {background-color: #4d4d4d}
+.button:hover {background-color: #96ac96}
 
 .button:active {
-  background-color: #4d4d4d;
+  background-color: #96ac96;
   box-shadow: 0 3px #999;
   transform: translateY(2px);
 }

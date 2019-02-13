@@ -22,15 +22,15 @@
 
 
 .paletteTable th{
-    background: rgb(190, 190, 190);
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .paletteTable tr:nth-child(odd){
-    background: rgb(255, 255, 255);
+    background: rgba(255,255,255,0.3);
 }
 
 .paletteTable tr:nth-child(even){
-    background: rgb(241, 241, 241);
+    background: rgba(0,0,0,0.1);
 }
 
 .paletteTable thead {
