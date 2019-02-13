@@ -6,6 +6,7 @@ class ImgUploader extends Component {
         return (
             <div id="ImgUploader" 
                 className={this.props.show?"hide":""}>
+            <div id="BackgroundImage"></div>
             <Dropzone onDrop={this.props.handleDropFile}>
             {({getRootProps, getInputProps, isDragActive}) => {
                 return (

@@ -68,6 +68,7 @@ class AppContainer extends Component {
                             handleDropFile={this.handleDropFile} />
             <div id="EditorContainer" 
                 className={this.state.show?"":"hide"}>
+                <div id="BackgroundImage"></div>
                 <div className="picEditorContainer">
                 <p className="picEditorTitle">Pre-Processing</p>
                 <PreEditor fileUrl = {this.state.fileUrl}

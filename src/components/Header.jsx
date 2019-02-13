@@ -19,15 +19,15 @@ class Header extends Component {
                         }}>
                     New Pattern
                 </p>
+                <a className="about item"
+                    target="_blank" rel="noopener noreferrer"
+                    href="https://msfstef.github.io/#/about">
+                    About
+                </a>
                 <a className="contact item"
                     target="_blank" rel="noopener noreferrer"
                     href="https://msfstef.github.io/#/contact">
                     Contact
-                </a>
-                <a className="about item"
-                    target="_blank" rel="noopener noreferrer"
-                    href="https://msfstef.github.io/#/about">
-                    About Me
                 </a>
                 </div>
             </div>
