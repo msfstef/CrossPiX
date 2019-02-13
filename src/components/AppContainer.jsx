@@ -15,6 +15,7 @@ class AppContainer extends Component {
         height: 0,
         palette: {},
         stitchSize: 1,
+        show: '',
         fileUrl : '',
         preEditUrl : '',
         pixelUrl : '',
@@ -25,21 +26,33 @@ class AppContainer extends Component {
     componentDidUpdate(prevProps){
         if (prevProps.newImage !== this.props.newImage) {
             this.setState({
-                fileUrl: ''
+                fileUrl: '',
+                show: false
             })
         }
+    }
+
+    loadFile = () => {
+        setTimeout(()=>{
+            this.setState({
+                show: true
+            });
+        }, 0);
+        
     }
 
     handleSelectFile = (files) => {
         var file = document.getElementById('img_upload').files[0];
         if (file) {
             this.setState({ fileUrl : window.URL.createObjectURL(file) });
+            this.loadFile();
         }
     }
 
     handleDropFile = (files) => {
         if (files) {
             this.setState({ fileUrl : window.URL.createObjectURL(files[0])});
+            this.loadFile();
         }
     }
 
@@ -50,11 +63,11 @@ class AppContainer extends Component {
     render() {
         return (
             <div id="AppContainer" >
-            <ImgUploader fileUrl={this.state.fileUrl} 
+            <ImgUploader show={this.state.show} 
                             handleSelectFile={this.handleSelectFile} 
                             handleDropFile={this.handleDropFile} />
             <div id="EditorContainer" 
-                className={this.state.fileUrl?"":"hide"}>
+                className={this.state.show?"":"hide"}>
                 
                 <PreEditor fileUrl = {this.state.fileUrl}
                             outputHandler = {this.outputHandler}  />

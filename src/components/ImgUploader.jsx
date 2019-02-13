@@ -5,7 +5,7 @@ class ImgUploader extends Component {
     render() {
         return (
             <div id="ImgUploader" 
-                className={this.props.fileUrl?"hide":""}>
+                className={this.props.show?"hide":""}>
             <Dropzone onDrop={this.props.handleDropFile}>
             {({getRootProps, getInputProps, isDragActive}) => {
                 return (
