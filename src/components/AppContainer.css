@@ -38,7 +38,7 @@
 
     font-size : 3vmin;
     font-weight: bold;
-    font-family: "Helvetica";
+    font-family: Helvetica, Arial, sans-serif;
 
     background-image: linear-gradient(#F7C9C8, #EFE0D5);
     box-shadow: 0 0 20px rgb(39, 39, 39);
@@ -56,6 +56,30 @@
     font-size : 3.5vmin;
 }
 
+
+.picEditorContainer{
+    position: relative;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.picEditorTitle {
+    position: absolute;
+    left: 20%;
+    top: -12px;
+    padding-bottom: 2px;
+    padding-top: 1px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background: #EFE0D5;
+    border: 1px solid black;
+    border-bottom: 1px dotted black;
+
+}
+
 .picEditor {
     display:flex;
     flex-direction: row;
@@ -65,8 +89,8 @@
     height: 40vw;
     max-height: 40vh;
     margin: auto;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 30px;
+    margin-bottom: 0px;
     padding: 5%;
 
     box-shadow: 3px 3px 20px black;
@@ -124,11 +148,35 @@
 }
 
 .sliderContainer {
+    position:relative;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    box-sizing: border-box;
     height: 100%;
     width: 50%;
+
+    margin-left: 5%;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 40px;
+    background-image: linear-gradient(to right, rgba(171,196,171,0.4), rgba(120,132,117,0.5))
+}
+
+.sliderBoxTitle {
+    position:absolute;
+    align-self: flex-start;
+    left: 10%;
+    top: 0%;
+    font-weight: bold;
+    font-family: Helvetica, Arial, sans-serif;
+
+    padding: 1%;
+    padding-left: 3%; 
+    padding-right: 3%;
+    border-radius: 10px;
+    background-color: #abc4ab;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+
 }
 
 .Slider {

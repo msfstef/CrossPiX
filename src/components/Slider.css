@@ -7,7 +7,22 @@
   transform:rotate(270deg);
 
   display:flex;
+  flex-direction: column;
+}
+
+
+.sliderTitle {
+  height: 20px;
+  align-self: flex-start;
+  text-align: left;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
+
+.sliderMain {
+  display:flex;
   align-items: center;
+  width: 100%;
 }
 
 

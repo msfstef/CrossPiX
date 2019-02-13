@@ -99,12 +99,15 @@ class PreEditor extends Component {
                 </div>
                 
                 <div className="sliderContainer">
+                    <p className="sliderBoxTitle">Options</p>
                     <Slider name = "contrastSlider"
+                            title = "Contrast (%)"
                             min = "0"
                             max = "200"
                             handler = {this.handleSliderContrast}
                             defaultValue = "100" />
                     <Slider name = "saturationSlider"
+                            title = "Saturation (%)"
                             min = "0"
                             max = "200"
                             handler = {this.handleSliderSaturation}

@@ -105,7 +105,9 @@ class ImageContainer extends Component {
                 </div>
 
                 <div className="sliderContainer">
+                    <p className="sliderBoxTitle">Options</p>
                     <Slider name = "horStitchesSlider"
+                            title = "# of Horizontal Stitches"
                                 min = "10"
                                 max = "150"
                                 handler = {this.handleSlider}

@@ -147,7 +147,9 @@ class ColorMapper extends Component {
                         <canvas className="picCanvas" id="ColorMapperCanvas"></canvas>
                     </div>
                     <div className="sliderContainer">
+                        <p className="sliderBoxTitle">Options</p>
                         <Slider name = "colorSlider" 
+                                title = "# of Colors"
                                     min = "2"
                                     max = "50"
                                     handler = {this.handleSlider}

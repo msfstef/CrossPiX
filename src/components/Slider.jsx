@@ -17,6 +17,10 @@ class Slider extends Component {
     render() {
         return (
             <div className="Slider">
+            <div className="sliderTitle">
+                {this.props.title}
+            </div>
+            <div className="sliderMain">
                 <input id={this.props.name} 
                     type="range" step="1"
                     min={this.props.min} max={this.props.max}
@@ -30,6 +34,7 @@ class Slider extends Component {
                     {this.state.value}
                     </span>
                 </span>
+            </div>
             </div>
         );
     }

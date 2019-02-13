@@ -68,19 +68,30 @@ class AppContainer extends Component {
                             handleDropFile={this.handleDropFile} />
             <div id="EditorContainer" 
                 className={this.state.show?"":"hide"}>
-                
+                <div className="picEditorContainer">
+                <p className="picEditorTitle">Pre-Processing</p>
                 <PreEditor fileUrl = {this.state.fileUrl}
                             outputHandler = {this.outputHandler}  />
+                </div>
+                <div className="picEditorContainer">
+                <p className="picEditorTitle">Size Reduction</p>
                 <Pixelator fileUrl = {this.state.preEditUrl} 
                             outputHandler = {this.outputHandler}  />
+                </div>
+                <div className="picEditorContainer">
+                <p className="picEditorTitle">Color Reduction</p>
                 <ColorMapper fileUrl = {this.state.pixelUrl}
                             outputHandler = {this.outputHandler}
                             initWidth = {this.state.width}
                             initHeight = {this.state.height}
                             palette = {this.state.palette}  />
+                </div>
+                <div className="picEditorContainer">
+                <p className="picEditorTitle">Pattern Preview</p>
                 <PatternMaker fileUrl = {this.state.colorUrl} 
                             palette = {this.state.palette}
                             outputHandler = {this.outputHandler} />
+                </div>
                 <GenPdf fileUrl = {this.state.patternUrl}
                         stitchSize = {this.state.stitchSize} />
                 
