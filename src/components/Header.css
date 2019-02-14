@@ -19,7 +19,7 @@
 #Header .logo {
     cursor: pointer;
     height: 70%;
-    max-width: 25vw;
+    max-width: 35vw;
     transition: box-shadow 0.05s;
 }
 
@@ -63,8 +63,15 @@
 
 }
 
+.item.contact {
+    display:none;
+}
 
 @media screen and (min-width: 900px) {
+    .item.contact {
+        display:unset;
+    }
+
     .item {
         font-size: 1.1em;
     }

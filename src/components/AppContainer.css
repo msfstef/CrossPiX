@@ -104,7 +104,7 @@
 
 .picEditorTitle {
     position: absolute;
-    left: 30%;
+    left: 20%;
     top: -11px;
     font-weight: bold;
     font-family: Arial;
@@ -126,7 +126,6 @@
     flex-direction: row;
     align-items: center;
     width: 80vw;
-    max-width: 1200px;
     height: 40vw;
     max-height: 40vh;
     margin: auto;
@@ -138,6 +137,12 @@
     border-radius: 40px;
     background-image: linear-gradient(to left, #F7C9C8, #EFE0D5);
     ;
+}
+
+@media screen and (min-width: 900px) {
+    .picEditor {
+        width: 60vw;
+    }
 }
 
 .picEditor.Pattern {
@@ -298,7 +303,7 @@
 .button {
     margin-left:10px;
     white-space: normal;
-    background-color: #abc4ab;
+    background-color: #a0b9a0a8;
     border: none;
     border-radius:50%;
     width: 18vmin;
@@ -315,10 +320,10 @@
     display: inline-block;
 }
 
-.button:hover {background-color: #96ac96}
+.button:hover {background-color: #96ac969f}
 
 .button:active {
-  background-color: #96ac96;
+  background-color: #96ac969f;
   box-shadow: 0 3px #999;
   transform: translateY(2px);
 }
