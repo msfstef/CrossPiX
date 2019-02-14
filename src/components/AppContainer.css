@@ -74,7 +74,7 @@
     height: 40vmin;
     z-index: 101;
 
-    font-size : 3vmin;
+    font-size : 3.3vmin;
     font-weight: bold;
     font-family: Helvetica, Arial, sans-serif;
 
@@ -91,7 +91,7 @@
     box-shadow: 0 0 40px #d0f4ea;
     width: 45vmin;
     height: 45vmin;
-    font-size : 3.5vmin;
+    font-size : 3.8vmin;
 }
 
 
@@ -104,7 +104,7 @@
 
 .picEditorTitle {
     position: absolute;
-    left: 20%;
+    left: 30%;
     top: -11px;
     font-weight: bold;
     font-family: Arial;
@@ -232,6 +232,7 @@
 
 .colorMapperEditor,
 .colorMapperPalette {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -240,12 +241,18 @@
     height: 50%;
 }
 
-.Palette {
-    padding: 10px;
+.colorMapperPalette {
+    justify-content: flex-end;
+    margin-top: 5%;
     box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
-    border-radius: 20px;
+    border-radius: 40px;
     background-image: linear-gradient(to right, rgba(171,196,171,0.4), rgba(120,132,117,0.5))
+}
 
+.Palette {
+    margin-right: 5%;
+    margin-left: 5%;
+    padding: 0px;
 }
 
 .sliderContainer {
@@ -277,7 +284,6 @@
     border-radius: 10px;
     background-color: #abc4ab;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-
 }
 
 .Slider {
@@ -290,16 +296,17 @@
 }
 
 .button {
-    margin-left: 50px;
+    margin-left:10px;
     white-space: normal;
     background-color: #abc4ab;
     border: none;
     border-radius:50%;
-    width: 6em;
-    height: 6em;
+    width: 18vmin;
+    max-width: 100px;
+    height: 18vmin;
+    max-height: 100px;
     color: black;
-    padding: 1em;
-    font-size: 1em;
+    font-size: 80%;
     font-weight: bold;
     font-family: Helvetica;
     text-align: center;

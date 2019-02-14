@@ -158,13 +158,14 @@ class ColorMapper extends Component {
                 </div>
 
                 <div className="colorMapperPalette">
-                    <Palette palette={this.state.palette} />
+                    <p className="sliderBoxTitle">Palette</p>
                     <input className="button" type="submit"
                             value="Change Symbols ↻"
                             onClick={() => {
                                 shuffle(this.state.symbols);
                                 this.onImgLoad();
                                 }} />
+                    <Palette palette={this.state.palette} />
                 </div>
                 
                 
