@@ -16,7 +16,7 @@
     background-image: linear-gradient(to left, #F7C9C8, #EFE0D5);
 }
 
-.logo {
+#Header .logo {
     height: 70%;
     max-width: 20vw;
 }

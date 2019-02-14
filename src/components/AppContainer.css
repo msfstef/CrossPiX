@@ -27,6 +27,9 @@
 
 #ImgUploader {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     top: 0;
     left: 0;
     z-index: 100;
@@ -38,6 +41,13 @@
 
 #ImgUploader.hide {
     display: none;
+}
+
+#ImgUploader .logo {
+    margin-top: 5%;
+    width: 70%;
+    max-width: 900px;
+
 }
 
 .dropBox {
