@@ -19,7 +19,7 @@
 #Header .logo {
     cursor: pointer;
     height: 70%;
-    max-width: 20vw;
+    max-width: 25vw;
     transition: box-shadow 0.05s;
 }
 
