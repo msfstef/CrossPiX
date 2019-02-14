@@ -5,12 +5,12 @@ class Header extends Component {
     render() {
         return (
             <div id="Header">
-                <p className="logo" 
+                <img className="logo" 
+                    src={require("../assets/logo.png")}
+                    alt="logo"
                     onClick={()=>{
                         this.props.handleMenu()
-                        }}>
-                    Logo
-                </p>
+                        }}/>
                 
                 <div className="itemContainer">
                 <p className="new item"

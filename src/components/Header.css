@@ -16,7 +16,9 @@
     background-image: linear-gradient(to left, #F7C9C8, #EFE0D5);
 }
 
-.Logo {
+.logo {
+    height: 70%;
+    max-width: 20vw;
 }
 
 .itemContainer {
