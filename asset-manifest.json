@@ -1,14 +1,15 @@
 {
-  "main.css": "/cross_stitch_generator/static/css/main.e5556e7d.chunk.css",
-  "main.js": "/cross_stitch_generator/static/js/main.10bde7d1.chunk.js",
-  "main.js.map": "/cross_stitch_generator/static/js/main.10bde7d1.chunk.js.map",
-  "static/js/1.7abd65dc.chunk.js": "/cross_stitch_generator/static/js/1.7abd65dc.chunk.js",
-  "static/js/1.7abd65dc.chunk.js.map": "/cross_stitch_generator/static/js/1.7abd65dc.chunk.js.map",
+  "main.css": "/cross_stitch_generator/static/css/main.d47cf0a6.chunk.css",
+  "main.js": "/cross_stitch_generator/static/js/main.c4c31832.chunk.js",
+  "main.js.map": "/cross_stitch_generator/static/js/main.c4c31832.chunk.js.map",
+  "static/js/1.9ba25d47.chunk.js": "/cross_stitch_generator/static/js/1.9ba25d47.chunk.js",
+  "static/js/1.9ba25d47.chunk.js.map": "/cross_stitch_generator/static/js/1.9ba25d47.chunk.js.map",
   "runtime~main.js": "/cross_stitch_generator/static/js/runtime~main.a64a8c8d.js",
   "runtime~main.js.map": "/cross_stitch_generator/static/js/runtime~main.a64a8c8d.js.map",
-  "static/media/AppContainer.css": "/cross_stitch_generator/static/media/aida_cloth.56601f7c.jpg",
-  "static/css/main.e5556e7d.chunk.css.map": "/cross_stitch_generator/static/css/main.e5556e7d.chunk.css.map",
+  "static/css/main.d47cf0a6.chunk.css.map": "/cross_stitch_generator/static/css/main.d47cf0a6.chunk.css.map",
+  "static/media/logo.png": "/cross_stitch_generator/static/media/logo.312fffb5.png",
+  "static/media/AppContainer.css": "/cross_stitch_generator/static/media/aida_cloth.e3d702a8.jpg",
   "index.html": "/cross_stitch_generator/index.html",
-  "precache-manifest.f5d7f72f1dc664b4fa7458b4c5c68fd8.js": "/cross_stitch_generator/precache-manifest.f5d7f72f1dc664b4fa7458b4c5c68fd8.js",
+  "precache-manifest.6fdb01b8ebe0241076ea4d96dd72ae04.js": "/cross_stitch_generator/precache-manifest.6fdb01b8ebe0241076ea4d96dd72ae04.js",
   "service-worker.js": "/cross_stitch_generator/service-worker.js"
 }
