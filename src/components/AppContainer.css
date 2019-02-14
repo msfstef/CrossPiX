@@ -88,7 +88,7 @@
 
 .dropBox.active,
 .dropBox:hover {
-    box-shadow: 0 0 40px #d0f4ea;
+    box-shadow: 0 0 40px #ffffff;
     width: 45vmin;
     height: 45vmin;
     font-size : 3.8vmin;

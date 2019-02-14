@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
+
 class GenPdf extends Component {
     state = {
         loading: false

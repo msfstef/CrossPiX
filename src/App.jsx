@@ -3,7 +3,6 @@ import AppContainer from './components/AppContainer';
 import Header from './components/Header';
 import './App.css';
 
-
 class App extends Component {
   state = {
     newImage: false
