@@ -12,19 +12,19 @@ self.__precacheManifest = [
     "url": "/cross_stitch_generator/static/js/runtime~main.a64a8c8d.js"
   },
   {
-    "revision": "3069d53d7fe6a2d1b6b6",
-    "url": "/cross_stitch_generator/static/js/main.3069d53d.chunk.js"
+    "revision": "8c1ff971f607b49cd661",
+    "url": "/cross_stitch_generator/static/js/main.8c1ff971.chunk.js"
   },
   {
     "revision": "9ba25d47b88dc993537d",
     "url": "/cross_stitch_generator/static/js/1.9ba25d47.chunk.js"
   },
   {
-    "revision": "3069d53d7fe6a2d1b6b6",
-    "url": "/cross_stitch_generator/static/css/main.bbf9fb62.chunk.css"
+    "revision": "8c1ff971f607b49cd661",
+    "url": "/cross_stitch_generator/static/css/main.862488b1.chunk.css"
   },
   {
-    "revision": "b976115985254c09dc0de3b52a1dc95a",
+    "revision": "15e74e5802b8256af34e73c3524edfae",
     "url": "/cross_stitch_generator/index.html"
   }
 ];
