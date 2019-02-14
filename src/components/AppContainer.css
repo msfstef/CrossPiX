@@ -167,6 +167,7 @@
     width: 40vmin;
     max-width: 40vmax;
     height: 60%;
+    max-height: 5vmax;
     color: black;
     font-size: 2vmax;
     font-weight: bold;
@@ -279,6 +280,22 @@
     position:absolute;
     align-self: flex-start;
     left: 10%;
+    top: 0%;
+    font-weight: bold;
+    font-family: Helvetica, Arial, sans-serif;
+
+    padding: 1%;
+    padding-left: 3%; 
+    padding-right: 3%;
+    border-radius: 10px;
+    background-color: #abc4ab;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.paletteBoxTitle {
+    position:absolute;
+    align-self: flex-start;
+    left: 4%;
     top: 0%;
     font-weight: bold;
     font-family: Helvetica, Arial, sans-serif;

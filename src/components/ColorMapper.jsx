@@ -158,7 +158,7 @@ class ColorMapper extends Component {
                 </div>
 
                 <div className="colorMapperPalette">
-                    <p className="sliderBoxTitle">Palette</p>
+                    <p className="paletteBoxTitle">Palette</p>
                     <input className="button" type="submit"
                             value="Change Symbols ↻"
                             onClick={() => {
