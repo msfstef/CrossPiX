@@ -45,9 +45,24 @@
 
 #ImgUploader .logo {
     margin-top: 5%;
-    width: 70%;
+    min-width: 30%;
     max-width: 900px;
+    max-height: 20vmin;
+}
 
+#ImgUploader .landingText {
+    font-size: 4vmin;
+    font-weight: bold;
+    font-family: Helvetica;
+    background: rgba(255, 255, 255, 0.288);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+@media screen and (min-width: 900px) {
+    #ImgUploader .landingText {
+        font-size: 180%;
+    }
 }
 
 .dropBox {

@@ -17,8 +17,14 @@
 }
 
 #Header .logo {
+    cursor: pointer;
     height: 70%;
     max-width: 20vw;
+    transition: box-shadow 0.05s;
+}
+
+#Header .logo:hover {
+    box-shadow: 0 0px 20px white;
 }
 
 .itemContainer {
@@ -41,6 +47,7 @@
     text-align: center;
     background: rgba(255, 255, 255, 0.63);
     border-radius: 10px;
+    transition: transform 0.1s, text-shadow 0.1s;
 }
 
 .item {

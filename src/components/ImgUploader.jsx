@@ -10,6 +10,7 @@ class ImgUploader extends Component {
             <img className="logo" 
                     src={require("../assets/logo.png")}
                     alt="logo"/>
+            <p className="landingText">Create cross-stitch patterns from digital images.</p>
             <Dropzone onDrop={this.props.handleDropFile}>
             {({getRootProps, getInputProps, isDragActive}) => {
                 return (
