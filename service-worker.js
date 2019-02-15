@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/cross_stitch_generator/precache-manifest.1efddb7b2906533df4fc4c4888fde473.js"
+  "/cross_stitch_generator/precache-manifest.5454376ca193d4d31f565cfce4a8e69a.js"
 );
 
 workbox.clientsClaim();
