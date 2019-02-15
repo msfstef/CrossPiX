@@ -63,6 +63,11 @@ class PatternMaker extends Component {
 
                     ctxb.fillStyle = "#000000"
                     ctxb.strokeStyle = "#000000"
+                    if (((r+g+b)/3 < 10) && !this.props.nocolor) {
+                        ctxb.strokeStyle = "#202020"
+                    }
+                    ctxb.strokeRect(i,j, scale, scale)
+
                     if ((i/scale)%10 === 0 &&
                         (j/scale)%10 === 0) {
                             ctxb.lineWidth = 8
@@ -70,10 +75,6 @@ class PatternMaker extends Component {
                         }
                     ctxb.lineWidth = 1
 
-                    if (((r+g+b)/3 < 10) && !this.props.nocolor) {
-                        ctxb.strokeStyle = "#202020"
-                    }
-                    ctxb.strokeRect(i,j, scale, scale)
                     ctxb.textAlign="center"; 
                     ctxb.textBaseline = "middle";
                     ctxb.font = "bold 25pt Courier";
