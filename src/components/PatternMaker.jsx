@@ -15,13 +15,19 @@ class PatternMaker extends Component {
         img.onload = () => {
             var canvas = document.getElementById('PatternMakerCanvas');
             var buffer = document.createElement('canvas');
-            
-
+            var canvasContainer = document.getElementsByClassName("canvasContainer Pattern")[0];
             
             buffer.width = img.width*scale;
             buffer.height = img.height*scale;
-            canvas.width = buffer.width;
-            canvas.height = buffer.height;
+            let ratio = img.width/img.height;
+            
+            if (ratio>1) {
+                canvas.width = canvasContainer.offsetWidth;
+                canvas.height = canvas.width/ratio;
+            } else {
+                canvas.height = canvasContainer.offsetHeight;
+                canvas.width = canvas.height*ratio;
+            }
             
 
             var ctx = canvas.getContext('2d');
@@ -96,7 +102,9 @@ class PatternMaker extends Component {
     render() {
         return (
             <div className="picEditor Pattern">
-                <canvas className="picCanvas Pattern" id="PatternMakerCanvas"></canvas>
+                <div className ="canvasContainer Pattern">
+                    <canvas className="picCanvas Pattern" id="PatternMakerCanvas"></canvas>
+                </div>
                 <GenPdf fileUrl = {this.state.patternUrl}
                         stitchSize = {this.state.scale} />
             </div>

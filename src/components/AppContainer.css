@@ -127,7 +127,6 @@
     align-items: center;
     width: 80vw;
     height: 40vw;
-    max-height: 40vh;
     margin: auto;
     margin-top: 30px;
     margin-bottom: 0px;
@@ -139,22 +138,28 @@
     ;
 }
 
+.picEditor.Pattern {
+    height: 90vw;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 @media screen and (min-width: 900px) {
     .picEditor {
         width: 60vw;
+        height: 40vh;
+    }
+    
+    .picEditor.Pattern {
+        height: 40vw;
     }
 }
 
-.picEditor.Pattern {
-    height: 70vh;
-    max-height: 80vw;
-    flex-direction: column;
-}
 
 #GenPdf {
     display: flex;
     width: 100%;
-    height: 100%
+    height: 20%;
 }
 
 #GenPdf input {
@@ -166,8 +171,8 @@
     border-radius: 40px;
     width: 40vmin;
     max-width: 40vmax;
-    height: 60%;
-    max-height: 10vmin;
+    height: 100%;
+    max-height: 5vmax;
     color: black;
     font-size: 2vmax;
     font-weight: bold;
@@ -223,11 +228,13 @@
     box-shadow: 3px 3px 20px black;
 }
 
+.canvasContainer.Pattern {
+    width: 80%;
+    height: 80%;
+}
+
 .picCanvas.Pattern {
     margin: auto;
-    margin-top: 0;
-    max-height: 80%;
-    max-width: 80%;
 }
 
 .picEditor.ColorMapper {
@@ -320,13 +327,18 @@
 @media screen and (max-width: 900px) {
     .picEditor {
         flex-direction: column;
-        min-height: 60vmax;
-        height: auto;
+        min-height: 70vmax;
+        height: 70vmax;
+    }
+    
+    .picEditor.Pattern {
+        height: 80vw;
+        min-height: 80vw;
     }
 
     .canvasContainer {
         width: 100%;
-        height: 30%;
+        height: 40%;
     }
 
     .picCanvas {
@@ -351,7 +363,7 @@
 
     .sliderContainer {
         width: 100%;
-        height: auto;
+        height: 60%;
         margin-left: 0;
         margin-top: 20%;
         padding-top: 20%;
@@ -368,6 +380,11 @@
         min-width: 70%;
         max-width: 70%;
         width: 70%;
+        margin-bottom: 15%;
+    }
+
+    .sliderTitle {
+        margin-bottom: 5%;
     }
 
     .SliderText {
