@@ -1,15 +1,15 @@
 {
-  "main.css": "/CrossPiX/static/css/main.a05f75a3.chunk.css",
-  "main.js": "/CrossPiX/static/js/main.83a9a1ae.chunk.js",
-  "main.js.map": "/CrossPiX/static/js/main.83a9a1ae.chunk.js.map",
+  "main.css": "/CrossPiX/static/css/main.fc2eaae9.chunk.css",
+  "main.js": "/CrossPiX/static/js/main.f021aa16.chunk.js",
+  "main.js.map": "/CrossPiX/static/js/main.f021aa16.chunk.js.map",
   "static/js/1.9ba25d47.chunk.js": "/CrossPiX/static/js/1.9ba25d47.chunk.js",
   "static/js/1.9ba25d47.chunk.js.map": "/CrossPiX/static/js/1.9ba25d47.chunk.js.map",
   "runtime~main.js": "/CrossPiX/static/js/runtime~main.db137a0b.js",
   "runtime~main.js.map": "/CrossPiX/static/js/runtime~main.db137a0b.js.map",
-  "static/css/main.a05f75a3.chunk.css.map": "/CrossPiX/static/css/main.a05f75a3.chunk.css.map",
+  "static/css/main.fc2eaae9.chunk.css.map": "/CrossPiX/static/css/main.fc2eaae9.chunk.css.map",
   "static/media/logo.png": "/CrossPiX/static/media/logo.312fffb5.png",
   "static/media/AppContainer.css": "/CrossPiX/static/media/aida_cloth.e3d702a8.jpg",
   "index.html": "/CrossPiX/index.html",
-  "precache-manifest.d2afa2c2b5eb8d282772e8353fceec1b.js": "/CrossPiX/precache-manifest.d2afa2c2b5eb8d282772e8353fceec1b.js",
+  "precache-manifest.b30246197c743df7a403710915192f6b.js": "/CrossPiX/precache-manifest.b30246197c743df7a403710915192f6b.js",
   "service-worker.js": "/CrossPiX/service-worker.js"
 }
