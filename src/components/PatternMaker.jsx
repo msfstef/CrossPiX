@@ -4,6 +4,8 @@ import GenPdf from './GenPdf';
 
 class PatternMaker extends Component {
     state = {
+        updateTimer: '',
+        timeout: 300,
         scale : 40
     }
     
@@ -40,8 +42,8 @@ class PatternMaker extends Component {
                                 0, 0, buffer.width, buffer.height);
             let imgdt = ctxb.getImageData(0, 0, buffer.width, buffer.height).data           
 
-            let palette = this.props.palette;
-            
+            let palette = this.props.palette;           
+
             for (let i = 0; i < buffer.width; i += scale) {
                 for (let j = 0; j < buffer.height; j += scale) {
                     let r = imgdt[4*(i + buffer.width*j) + 0];
@@ -54,16 +56,21 @@ class PatternMaker extends Component {
                         char = palette[color]["symb"];
                     }
 
+                    if (this.props.nocolor) {
+                        ctxb.fillStyle = "#ffffff"
+                        ctxb.fillRect(i, j, scale, scale)
+                    }
+
                     ctxb.fillStyle = "#000000"
                     ctxb.strokeStyle = "#000000"
-                    if ((r+g+b)/3 < 10) {
+                    if (((r+g+b)/3 < 10) && !this.props.nocolor) {
                         ctxb.strokeStyle = "#202020"
                     }
                     ctxb.strokeRect(i,j, scale, scale)
                     ctxb.textAlign="center"; 
                     ctxb.textBaseline = "middle";
                     ctxb.font = "bold 25pt Courier";
-                    if ((r+g+b)/3 < 120) {
+                    if (((r+g+b)/3 < 120) && !this.props.nocolor) {
                         ctxb.fillStyle = "#ffffff"
                     } else {
                         ctxb.fillStyle = "#000000"
@@ -93,9 +100,13 @@ class PatternMaker extends Component {
 
     componentDidUpdate(prevProps) {
         if(this.props.fileUrl !== prevProps.fileUrl ||
-            this.props.palette !== prevProps.palette)
+            this.props.palette !== prevProps.palette ||
+            this.props.nocolor !== prevProps.nocolor)
         {
-            this.onImgLoad();
+            clearTimeout(this.state.updateTimer)
+            this.setState({ updateTimer: setTimeout(() => {
+                this.onImgLoad();
+                }, this.state.timeout)})
         }
     }
     

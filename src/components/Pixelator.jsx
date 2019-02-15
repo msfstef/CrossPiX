@@ -5,8 +5,10 @@ import {toggleAliasing, canvas_arrow} from '../utilities/utilities';
 
 class ImageContainer extends Component {
     state = {
+        updateTimer: '',
+        timeout: 300,
         defaultHorStitches: 50,
-        horStitches: 50
+        horStitches: 50,
     }
 
     handleSlider = () => {
@@ -90,10 +92,13 @@ class ImageContainer extends Component {
 
     componentDidUpdate(prevProps) {
         if(this.props.fileUrl !== prevProps.fileUrl)
-        {
-            document.getElementById("horStitchesSlider").value = this.state.defaultHorStitches;
-            this.setState({ horStitches: this.state.defaultHorStitches});
-            this.onImgLoad();
+        {      
+            clearTimeout(this.state.updateTimer)
+            this.setState({ updateTimer: setTimeout(() => {
+                document.getElementById("horStitchesSlider").value = this.state.defaultHorStitches;
+                this.setState({ horStitches: this.state.defaultHorStitches});
+                this.onImgLoad();
+                }, this.state.timeout)})
         }
     }
     

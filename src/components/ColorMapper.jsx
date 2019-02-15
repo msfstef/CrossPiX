@@ -10,6 +10,8 @@ import Palette from './Palette';
 
 class ColorMapper extends Component {
     state = {
+        updateTimer: '',
+        timeout: 300,
         colors: 10,
         rgb_dmc: [],
         rgb_dmc_pure: [],
@@ -128,9 +130,12 @@ class ColorMapper extends Component {
     componentDidUpdate(prevProps) {
         if(this.props.fileUrl !== prevProps.fileUrl)
         {   
+            clearTimeout(this.state.updateTimer)
+            this.setState({ updateTimer: setTimeout(() => {
             document.getElementById("colorSlider").value = this.state.defaultColors;
             this.setState({ colors: this.state.defaultColors});
             this.onImgLoad();
+            }, this.state.timeout)})
         }
     }
 
@@ -159,12 +164,21 @@ class ColorMapper extends Component {
 
                 <div className="colorMapperPalette">
                     <p className="paletteBoxTitle">Palette</p>
+                    <div className="buttonContainer">
                     <input className="button" type="submit"
-                            value="Change Symbols ↻"
+                            value="Change Symbols"
                             onClick={() => {
                                 shuffle(this.state.symbols);
                                 this.onImgLoad();
                                 }} />
+                    <input className="button" type="submit"
+                            value="Toggle Colors"
+                            onClick={() => {
+                                this.props.outputHandler({
+                                    'nocolor' : !this.props.nocolor
+                                })
+                                }} />
+                    </div>
                     <Palette palette={this.state.palette} />
                 </div>
                 

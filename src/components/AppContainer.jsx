@@ -15,6 +15,7 @@ class AppContainer extends Component {
         height: 0,
         palette: {},
         stitchSize: 1,
+        nocolor: false,
         show: '',
         fileUrl : '',
         preEditUrl : '',
@@ -85,13 +86,15 @@ class AppContainer extends Component {
                             outputHandler = {this.outputHandler}
                             initWidth = {this.state.width}
                             initHeight = {this.state.height}
-                            palette = {this.state.palette}  />
+                            palette = {this.state.palette}  
+                            nocolor = {this.state.nocolor} />
                 </div>
                 <div className="picEditorContainer">
                 <p className="picEditorTitle">Pattern Preview</p>
                 <PatternMaker fileUrl = {this.state.colorUrl} 
                             palette = {this.state.palette}
-                            outputHandler = {this.outputHandler} />
+                            outputHandler = {this.outputHandler}  
+                            nocolor = {this.state.nocolor} />
                 </div>
                 <div id="Footer">
                 <p>
