@@ -1,7 +1,7 @@
 {
   "main.css": "/CrossPiX/static/css/main.fc2eaae9.chunk.css",
-  "main.js": "/CrossPiX/static/js/main.4ce33db9.chunk.js",
-  "main.js.map": "/CrossPiX/static/js/main.4ce33db9.chunk.js.map",
+  "main.js": "/CrossPiX/static/js/main.c0dec8b3.chunk.js",
+  "main.js.map": "/CrossPiX/static/js/main.c0dec8b3.chunk.js.map",
   "static/js/1.9ba25d47.chunk.js": "/CrossPiX/static/js/1.9ba25d47.chunk.js",
   "static/js/1.9ba25d47.chunk.js.map": "/CrossPiX/static/js/1.9ba25d47.chunk.js.map",
   "runtime~main.js": "/CrossPiX/static/js/runtime~main.db137a0b.js",
@@ -10,6 +10,6 @@
   "static/media/logo.png": "/CrossPiX/static/media/logo.312fffb5.png",
   "static/media/AppContainer.css": "/CrossPiX/static/media/aida_cloth.e3d702a8.jpg",
   "index.html": "/CrossPiX/index.html",
-  "precache-manifest.f48f261ec334cddee7c17aeb29753f8a.js": "/CrossPiX/precache-manifest.f48f261ec334cddee7c17aeb29753f8a.js",
+  "precache-manifest.438d82d74f86918280b1e1e065578b7b.js": "/CrossPiX/precache-manifest.438d82d74f86918280b1e1e065578b7b.js",
   "service-worker.js": "/CrossPiX/service-worker.js"
 }

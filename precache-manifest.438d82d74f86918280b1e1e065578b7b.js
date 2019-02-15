@@ -12,19 +12,19 @@ self.__precacheManifest = [
     "url": "/CrossPiX/static/js/runtime~main.db137a0b.js"
   },
   {
-    "revision": "4ce33db9e23fbc14ffbb",
-    "url": "/CrossPiX/static/js/main.4ce33db9.chunk.js"
+    "revision": "c0dec8b322e2cae2e7c9",
+    "url": "/CrossPiX/static/js/main.c0dec8b3.chunk.js"
   },
   {
     "revision": "9ba25d47b88dc993537d",
     "url": "/CrossPiX/static/js/1.9ba25d47.chunk.js"
   },
   {
-    "revision": "4ce33db9e23fbc14ffbb",
+    "revision": "c0dec8b322e2cae2e7c9",
     "url": "/CrossPiX/static/css/main.fc2eaae9.chunk.css"
   },
   {
-    "revision": "6106cef5c78666a32b9c199dabb73f8b",
+    "revision": "858a41fa9e7915ed38d64c125d772344",
     "url": "/CrossPiX/index.html"
   }
 ];
