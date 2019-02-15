@@ -1,8 +1,8 @@
 {
-  "name": "cross_stitch_generator",
+  "name": "CrossPiX",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://msfstef.github.io/cross_stitch_generator",
+  "homepage": "http://msfstef.github.io/CrossPiX",
   "dependencies": {
     "html2canvas": "^1.0.0-alpha.12",
     "jspdf": "^1.5.3",
