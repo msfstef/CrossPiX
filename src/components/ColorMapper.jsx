@@ -156,7 +156,7 @@ class ColorMapper extends Component {
                         <Slider name = "colorSlider" 
                                 title = "# of Colors"
                                     min = "2"
-                                    max = "50"
+                                    max = "90"
                                     handler = {this.handleSlider}
                                     defaultValue = {this.state.defaultColors} />
                     </div>

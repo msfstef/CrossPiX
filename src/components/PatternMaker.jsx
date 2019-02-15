@@ -63,6 +63,13 @@ class PatternMaker extends Component {
 
                     ctxb.fillStyle = "#000000"
                     ctxb.strokeStyle = "#000000"
+                    if ((i/scale)%10 === 0 &&
+                        (j/scale)%10 === 0) {
+                            ctxb.lineWidth = 8
+                            ctxb.strokeRect(i,j,10*scale,10*scale)
+                        }
+                    ctxb.lineWidth = 1
+
                     if (((r+g+b)/3 < 10) && !this.props.nocolor) {
                         ctxb.strokeStyle = "#202020"
                     }
