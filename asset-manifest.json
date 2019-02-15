@@ -1,15 +1,15 @@
 {
-  "main.css": "/cross_stitch_generator/static/css/main.8a14d95f.chunk.css",
-  "main.js": "/cross_stitch_generator/static/js/main.af40e0ab.chunk.js",
-  "main.js.map": "/cross_stitch_generator/static/js/main.af40e0ab.chunk.js.map",
-  "static/js/1.9ba25d47.chunk.js": "/cross_stitch_generator/static/js/1.9ba25d47.chunk.js",
-  "static/js/1.9ba25d47.chunk.js.map": "/cross_stitch_generator/static/js/1.9ba25d47.chunk.js.map",
-  "runtime~main.js": "/cross_stitch_generator/static/js/runtime~main.a64a8c8d.js",
-  "runtime~main.js.map": "/cross_stitch_generator/static/js/runtime~main.a64a8c8d.js.map",
-  "static/css/main.8a14d95f.chunk.css.map": "/cross_stitch_generator/static/css/main.8a14d95f.chunk.css.map",
-  "static/media/logo.png": "/cross_stitch_generator/static/media/logo.312fffb5.png",
-  "static/media/AppContainer.css": "/cross_stitch_generator/static/media/aida_cloth.e3d702a8.jpg",
-  "index.html": "/cross_stitch_generator/index.html",
-  "precache-manifest.5454376ca193d4d31f565cfce4a8e69a.js": "/cross_stitch_generator/precache-manifest.5454376ca193d4d31f565cfce4a8e69a.js",
-  "service-worker.js": "/cross_stitch_generator/service-worker.js"
+  "main.css": "/CrossPiX/static/css/main.a05f75a3.chunk.css",
+  "main.js": "/CrossPiX/static/js/main.83a9a1ae.chunk.js",
+  "main.js.map": "/CrossPiX/static/js/main.83a9a1ae.chunk.js.map",
+  "static/js/1.9ba25d47.chunk.js": "/CrossPiX/static/js/1.9ba25d47.chunk.js",
+  "static/js/1.9ba25d47.chunk.js.map": "/CrossPiX/static/js/1.9ba25d47.chunk.js.map",
+  "runtime~main.js": "/CrossPiX/static/js/runtime~main.db137a0b.js",
+  "runtime~main.js.map": "/CrossPiX/static/js/runtime~main.db137a0b.js.map",
+  "static/css/main.a05f75a3.chunk.css.map": "/CrossPiX/static/css/main.a05f75a3.chunk.css.map",
+  "static/media/logo.png": "/CrossPiX/static/media/logo.312fffb5.png",
+  "static/media/AppContainer.css": "/CrossPiX/static/media/aida_cloth.e3d702a8.jpg",
+  "index.html": "/CrossPiX/index.html",
+  "precache-manifest.d2afa2c2b5eb8d282772e8353fceec1b.js": "/CrossPiX/precache-manifest.d2afa2c2b5eb8d282772e8353fceec1b.js",
+  "service-worker.js": "/CrossPiX/service-worker.js"
 }

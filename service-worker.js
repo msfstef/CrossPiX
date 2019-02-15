@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/cross_stitch_generator/precache-manifest.5454376ca193d4d31f565cfce4a8e69a.js"
+  "/CrossPiX/precache-manifest.d2afa2c2b5eb8d282772e8353fceec1b.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/cross_stitch_generator/index.html", {
+workbox.routing.registerNavigationRoute("/CrossPiX/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
