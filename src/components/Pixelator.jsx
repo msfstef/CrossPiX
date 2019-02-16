@@ -58,7 +58,7 @@ class ImageContainer extends Component {
                     defaultVertStitches: default_h,
                     vertStitches: default_h
                 });
-                document.getElementById("vertStitchesSlider").value = this.state.defaultVertStitches;
+                document.getElementById("vertStitchesSlider").value = this.state.defaultVertStitches;   
             }
 
             var ctx = canvas.getContext('2d');
@@ -126,7 +126,11 @@ class ImageContainer extends Component {
             clearTimeout(this.state.updateTimer)
             this.setState({ updateTimer: setTimeout(() => {
                 document.getElementById("horStitchesSlider").value = this.state.defaultHorStitches;
-                this.setState({ horStitches: this.state.defaultHorStitches});
+                document.getElementById("vertStitchesSlider").value = this.state.defaultVertStitches;
+                this.setState({ 
+                    horStitches: this.state.defaultHorStitches,
+                    vertStitches: this.state.defaultVertStitches 
+                });
                 this.onImgLoad();
                 }, this.state.timeout)})
         }
@@ -144,13 +148,13 @@ class ImageContainer extends Component {
                     <Slider name = "vertStitchesSlider"
                             title = "# of Vertical Stitches"
                                 min = "10"
-                                max = "150"
+                                max = "300"
                                 handler = {this.handleSlider}
                                 defaultValue = {this.state.defaultVertStitches} />
                     <Slider name = "horStitchesSlider"
                             title = "# of Horizontal Stitches"
                                 min = "10"
-                                max = "150"
+                                max = "300"
                                 handler = {this.handleSlider}
                                 defaultValue = {this.state.defaultHorStitches} />
                 </div>
