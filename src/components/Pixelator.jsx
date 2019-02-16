@@ -8,11 +8,30 @@ class ImageContainer extends Component {
         updateTimer: '',
         timeout: 300,
         defaultHorStitches: 50,
+        defaultVertStitches: 50,
         horStitches: 50,
+        vertStitches: 50
     }
 
     handleSlider = () => {
-        this.setState({ horStitches : document.getElementById("horStitchesSlider").value});
+        let hor = document.getElementById("horStitchesSlider").value
+        let vert = document.getElementById("vertStitchesSlider").value
+        let new_hor = 0;
+        let new_vert = 0
+        let ratio = this.state.defaultHorStitches/this.state.defaultVertStitches
+        if (vert !== this.state.vertStitches) {
+            new_vert = vert;
+            new_hor = Math.ceil(new_vert*ratio);
+            document.getElementById("horStitchesSlider").value = new_hor;
+        } else if (hor !== this.state.horStitches) {
+            new_hor = hor;
+            new_vert = Math.ceil(new_hor/ratio);
+            document.getElementById("vertStitchesSlider").value = new_vert;
+        }
+        this.setState({ 
+            horStitches : new_hor,
+            vertStitches : new_vert
+        });
         this.onImgLoad();
     }
 
@@ -33,6 +52,15 @@ class ImageContainer extends Component {
             buffer.width = img.width;
             buffer.height = img.height;
 
+            let default_h = Math.ceil((img.height/img.width)*this.state.defaultHorStitches);
+            if (default_h !== this.state.defaultVertStitches) {
+                this.setState({
+                    defaultVertStitches: default_h,
+                    vertStitches: default_h
+                });
+                document.getElementById("vertStitchesSlider").value = this.state.defaultVertStitches;
+            }
+
             var ctx = canvas.getContext('2d');
             var ctxb = buffer.getContext('2d');
             var ctxb2 = buffer2.getContext('2d');
@@ -40,7 +68,9 @@ class ImageContainer extends Component {
             ctxb2.fillRect(margin, 0,img.width, img.height);
 
             var w = this.state.horStitches;
-            var h = Math.ceil((img.height/img.width)*this.state.horStitches);
+            var h = this.state.vertStitches
+            
+            
             
             buffer.width = w;
             buffer.height = h;
@@ -111,6 +141,12 @@ class ImageContainer extends Component {
 
                 <div className="sliderContainer">
                     <p className="sliderBoxTitle">Options</p>
+                    <Slider name = "vertStitchesSlider"
+                            title = "# of Vertical Stitches"
+                                min = "10"
+                                max = "150"
+                                handler = {this.handleSlider}
+                                defaultValue = {this.state.defaultVertStitches} />
                     <Slider name = "horStitchesSlider"
                             title = "# of Horizontal Stitches"
                                 min = "10"
