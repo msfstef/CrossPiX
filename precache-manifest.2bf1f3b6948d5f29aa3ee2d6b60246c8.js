@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/CrossPiX/static/css/main.7372be2c.chunk.css"
   },
   {
-    "revision": "26d88c466431e3e22145301df57e6ee5",
+    "revision": "248280a6fff5359237b046222f8285ce",
     "url": "/CrossPiX/index.html"
   }
 ];
