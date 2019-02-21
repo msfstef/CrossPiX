@@ -9,8 +9,10 @@ class ImageContainer extends Component {
         timeout: 300,
         defaultHorStitches: 50,
         defaultVertStitches: 50,
+        ratio: 1,
         horStitches: 50,
-        vertStitches: 50
+        vertStitches: 50,
+        maxSlider: 300
     }
 
     handleSlider = () => {
@@ -30,7 +32,7 @@ class ImageContainer extends Component {
         }
         this.setState({ 
             horStitches : new_hor,
-            vertStitches : new_vert
+            vertStitches : new_vert,
         });
         this.onImgLoad();
     }
@@ -52,11 +54,13 @@ class ImageContainer extends Component {
             buffer.width = img.width;
             buffer.height = img.height;
 
-            let default_h = Math.ceil((img.height/img.width)*this.state.defaultHorStitches);
+            let ratio = img.height/img.width
+            let default_h = Math.ceil(ratio*this.state.defaultHorStitches);
             if (default_h !== this.state.defaultVertStitches) {
                 this.setState({
                     defaultVertStitches: default_h,
-                    vertStitches: default_h
+                    vertStitches: default_h,
+                    ratio: ratio
                 });
                 document.getElementById("vertStitchesSlider").value = this.state.defaultVertStitches;   
             }
@@ -148,13 +152,17 @@ class ImageContainer extends Component {
                     <Slider name = "vertStitchesSlider"
                             title = "# of Vertical Stitches"
                                 min = "10"
-                                max = "300"
+                                max = {(this.state.ratio < 1
+                                    ? Math.ceil(this.state.maxSlider*this.state.ratio)
+                                    : this.state.maxSlider)}
                                 handler = {this.handleSlider}
                                 defaultValue = {this.state.defaultVertStitches} />
                     <Slider name = "horStitchesSlider"
                             title = "# of Horizontal Stitches"
                                 min = "10"
-                                max = "300"
+                                max = {(this.state.ratio < 1
+                                    ? this.state.maxSlider
+                                    : Math.ceil(this.state.maxSlider/this.state.ratio))}
                                 handler = {this.handleSlider}
                                 defaultValue = {this.state.defaultHorStitches} />
                 </div>
