@@ -12,7 +12,7 @@ class ImageContainer extends Component {
         ratio: 1,
         horStitches: 50,
         vertStitches: 50,
-        maxSlider: 300
+        maxSlider: 150
     }
 
     handleSlider = () => {
@@ -149,8 +149,15 @@ class ImageContainer extends Component {
 
                 <div className="sliderContainer">
                     <p className="sliderBoxTitle">Options</p>
+                    <input className="Pixelator button" type="submit"
+                            value="More Stitches (warning: may crash)"
+                            onClick={() => {
+                                this.setState({
+                                    maxSlider: this.state.maxSlider + 50
+                                })
+                                }} />
                     <Slider name = "vertStitchesSlider"
-                            title = "# of Vertical Stitches"
+                            title = "# of Vert. Stitches"
                                 min = "10"
                                 max = {(this.state.ratio < 1
                                     ? Math.ceil(this.state.maxSlider*this.state.ratio)
@@ -158,7 +165,7 @@ class ImageContainer extends Component {
                                 handler = {this.handleSlider}
                                 defaultValue = {this.state.defaultVertStitches} />
                     <Slider name = "horStitchesSlider"
-                            title = "# of Horizontal Stitches"
+                            title = "# of Hor. Stitches"
                                 min = "10"
                                 max = {(this.state.ratio < 1
                                     ? this.state.maxSlider

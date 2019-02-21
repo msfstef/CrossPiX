@@ -434,6 +434,44 @@
   transform: translateY(2px);
 }
 
+.Pixelator.button {
+    position:absolute;
+    align-self: flex-start;
+    right: 10%;
+    top: 5%;
+
+    margin:0;
+
+    width: 35%;
+    max-width: 50%;
+    height:auto;
+    max-height:auto;
+
+    padding: 1%;
+    border-radius: 10px;
+
+    white-space: auto;
+    background-color: #a0b9a0a8;
+    border: none;
+    color: black;
+    font-size: 60%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 5px #999;
+}
+
+@media screen and (min-width: 900px) {
+    .Pixelator.button {
+        width: 27%;
+        max-width: auto;
+        left: 10%;
+        bottom: 10%;
+        top:auto;
+        right:auto;
+    }
+}
+
 
 #Footer {
     display: flex;
