@@ -140,6 +140,7 @@
 
 .picEditor.Pattern {
     height: 90vw;
+    min-height: min-content;
     flex-direction: column;
     justify-content: space-between;
 }
@@ -151,7 +152,9 @@
     }
     
     .picEditor.Pattern {
-        height: 40vw;
+        min-height: min-content;
+        height: min-content;
+        
     }
 }
 
@@ -165,6 +168,7 @@
 #GenPdf input {
     margin: auto;
     margin-bottom: 0;
+    margin-top: 5%;
     white-space: normal;
     background-color: #abc4ab;
     border: 2px solid black;
