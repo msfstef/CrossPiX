@@ -1,15 +1,15 @@
 {
-  "main.css": "/CrossPiX/static/css/main.75a0be27.chunk.css",
-  "main.js": "/CrossPiX/static/js/main.c47be446.chunk.js",
-  "main.js.map": "/CrossPiX/static/js/main.c47be446.chunk.js.map",
-  "runtime~main.js": "/CrossPiX/static/js/runtime~main.032a6ffc.js",
-  "runtime~main.js.map": "/CrossPiX/static/js/runtime~main.032a6ffc.js.map",
-  "static/js/2.d7c701ae.chunk.js": "/CrossPiX/static/js/2.d7c701ae.chunk.js",
-  "static/js/2.d7c701ae.chunk.js.map": "/CrossPiX/static/js/2.d7c701ae.chunk.js.map",
-  "index.html": "/CrossPiX/index.html",
-  "precache-manifest.95f164dccbe9a23c2f5d5e0f9c66b204.js": "/CrossPiX/precache-manifest.95f164dccbe9a23c2f5d5e0f9c66b204.js",
-  "service-worker.js": "/CrossPiX/service-worker.js",
-  "static/css/main.75a0be27.chunk.css.map": "/CrossPiX/static/css/main.75a0be27.chunk.css.map",
+  "main.css": "/CrossPiX/static/css/main.d1e7d995.chunk.css",
+  "main.js": "/CrossPiX/static/js/main.fdd4210f.chunk.js",
+  "main.js.map": "/CrossPiX/static/js/main.fdd4210f.chunk.js.map",
+  "static/js/1.9ba25d47.chunk.js": "/CrossPiX/static/js/1.9ba25d47.chunk.js",
+  "static/js/1.9ba25d47.chunk.js.map": "/CrossPiX/static/js/1.9ba25d47.chunk.js.map",
+  "runtime~main.js": "/CrossPiX/static/js/runtime~main.db137a0b.js",
+  "runtime~main.js.map": "/CrossPiX/static/js/runtime~main.db137a0b.js.map",
+  "static/css/main.d1e7d995.chunk.css.map": "/CrossPiX/static/css/main.d1e7d995.chunk.css.map",
+  "static/media/logo.png": "/CrossPiX/static/media/logo.312fffb5.png",
   "static/media/AppContainer.css": "/CrossPiX/static/media/aida_cloth.e3d702a8.jpg",
-  "static/media/logo.png": "/CrossPiX/static/media/logo.312fffb5.png"
+  "index.html": "/CrossPiX/index.html",
+  "precache-manifest.602f6407e6b43d29b0812ef0b467fa51.js": "/CrossPiX/precache-manifest.602f6407e6b43d29b0812ef0b467fa51.js",
+  "service-worker.js": "/CrossPiX/service-worker.js"
 }
