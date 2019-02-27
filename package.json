@@ -2,7 +2,7 @@
   "name": "CrossPiX",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://msfstef.github.io/CrossPiX",
+  "homepage": "https://crosspix.net/",
   "dependencies": {
     "html2canvas": "^1.0.0-alpha.12",
     "jspdf": "^1.5.3",
