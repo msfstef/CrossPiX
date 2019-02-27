@@ -340,11 +340,11 @@
     }
     
     .colorMapperEditor {
-        height: 60%
+        height: 70%
     }
     
     .colorMapperPalette {
-        height: 40%;
+        height: 30%;
     }
     
     .picEditor.Pattern {
@@ -354,7 +354,7 @@
 
     .canvasContainer {
         width: 100%;
-        height: 40%;
+        height: 60%;
     }
 
     .picCanvas {
@@ -363,14 +363,19 @@
 
     .picEditor.ColorMapper {
         flex-direction:column;
-        height: 90vmax;
-        min-height: 90vmax;
+        height: min-content;
+        min-height: min-content;
     }
     
     .colorMapperEditor {
         flex-direction: column;
         align-items: space-evenly;
         height: auto;
+    }
+
+    .colorMapperPalette {
+        margin-top: 10%;
+        height: 35vmax
     }
 
     .Palette .paletteTable td:nth-child(2),
@@ -382,7 +387,7 @@
         width: 100%;
         height: 60%;
         margin-left: 0;
-        margin-top: 20%;
+        margin-top: 10%;
         padding-top: 20%;
         padding-bottom: 5%;
         flex-direction: column;
@@ -439,6 +444,13 @@
     text-decoration: none;
     box-shadow: 0 5px #999;
     display: inline-block;
+}
+
+@media screen and (max-width: 900px) {
+    .button {
+        width: 17vmin;
+        height: 17vmin;
+    }
 }
 
 .button:hover {background-color: #96ac969f}
