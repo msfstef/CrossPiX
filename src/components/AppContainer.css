@@ -260,6 +260,8 @@
     height: 50%;
 }
 
+
+
 .colorMapperPalette {
     justify-content: flex-end;
     margin-top: 5%;
@@ -337,6 +339,14 @@
         height: 70vmax;
     }
     
+    .colorMapperEditor {
+        height: 60%
+    }
+    
+    .colorMapperPalette {
+        height: 40%;
+    }
+    
     .picEditor.Pattern {
         height: 80vw;
         min-height: 80vw;
@@ -359,6 +369,7 @@
     
     .colorMapperEditor {
         flex-direction: column;
+        align-items: space-evenly;
         height: auto;
     }
 
@@ -416,9 +427,9 @@
     background-color: #a0b9a0a8;
     border: none;
     border-radius:50%;
-    width: 18vmin;
+    width: 13vmin;
     max-width: 100px;
-    height: 18vmin;
+    height: 13vmin;
     max-height: 100px;
     color: black;
     font-size: 80%;
