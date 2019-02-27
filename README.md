@@ -1,6 +1,6 @@
 ## CrossPiX
 
-https://msfstef.github.io/Crosspix/
+https://msfstef.github.io/crosspix/
 
 A simple React web app to turn pictures into cross-stitch patterns.
 
